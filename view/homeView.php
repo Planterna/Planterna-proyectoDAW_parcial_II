@@ -56,6 +56,25 @@
   </div>
   
 </section>
+<script>
+  const Deslizante = document.getElementById("Deslizante");
+  const Cartillas = Deslizante.children.length;
+  const cartillasVista = 3;
+  const tamanoCarta = 270; 
+  let contador = 0;
+
+  function moverDeslizante(direccion) {
+    const maxIndex = Cartillas - cartillasVista;
+
+    contador += direccion;
+
+    if (contador < 0) contador = 0;
+    if (contador > maxIndex) contador = maxIndex;
+
+    const scrollAmount = contador * tamanoCarta;
+    Deslizante.style.transform = `translateX(-${scrollAmount}px)`;
+  }
+</script>
 
 <?php
 require_once FOOTER; ?>
