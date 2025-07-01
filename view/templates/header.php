@@ -27,10 +27,7 @@
                         <a class="nav-link" href="index.php?c=Servicios&f=index">Reparaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="repuestos/repuestos.html">Repuestos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tecnicos/tecnicos.html">Técnicos</a>
+                        <a class="nav-link" href="index.php?c=Repuestos&f=index">Repuestos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cotizaciones/cotizaciones.html">Cotizaciones</a>
