@@ -1,3 +1,5 @@
+<!--autor: Jonathan Alejandro Baquerizo-->
+
 <?php
     require_once 'model/dao/ServiciosDAO.php';
     class ServiciosController {
@@ -9,9 +11,12 @@
         }
 
         public function index() {
-            require_once VSERVICIOS.'formulario.php';
+            require_once VSERVICIOS.'informacion.php';
         }
 
+        public function formInit(){
+            require_once VSERVICIOS.'formulario.php';
+        }
     }
 
 

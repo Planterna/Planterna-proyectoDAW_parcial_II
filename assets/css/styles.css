@@ -171,7 +171,82 @@ footer {
     height: 400px; 
     object-fit: contain;
     border-radius: 10px;
-}   
+}  
+
+.contenedor_solicitud{
+        display: flex;
+        flex-direction: row;
+      }
+
+.formulario {
+        text-align: left;
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #555;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .formulario label,
+      .formulario input {
+        display: block;
+        margin-bottom: 8px;
+        color: white;
+      }
+
+      .formulario label {
+        font-weight: bold;
+      }
+
+      .formulario input[type="text"],
+      .formulario input[type="email"] {
+        width: 90%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #777;
+        background-color: rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 16px;
+      }
+
+      .formulario button[type="button"] {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        width: 50%;
+        display: block;
+        margin: 10px auto;
+        transition: background-color 0.3s ease;
+      }
+
+      .formulario button[type="button"]:hover {
+        background-color: #0056b3;
+      }
+
+      .formulario .radio-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .formulario .radio-group input[type="radio"] {
+        display: inline-block;
+        width: auto;
+        margin-right: 10px;
+        margin-left: 10px;
+        font-size: 16px;
+      }
+      .formulario .radio-group label {
+        display: inline-block;
+        font-weight: normal;
+        margin-left: 10px;
+        margin-right: 10px ;
+        margin-bottom: 0;
+      }
 
 
 /* Para modulo productos */

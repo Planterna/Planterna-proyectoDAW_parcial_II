@@ -1,3 +1,5 @@
+<!--autor: Jonathan Alejandro Baquerizo-->
+
 <?php
     require_once 'config/Conexion.php';
     class ServiciosDAO {
