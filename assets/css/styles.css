@@ -264,38 +264,37 @@ footer {
 }
 
 .formulario .radio-group label {
-  display: inline-block; /* Las labels de radio pueden estar en línea */
-  font-weight: normal; /* No tan negrita como las otras labels */
-  margin-bottom: 0; /* No necesitas margen inferior aquí */
+  display: inline-block; 
+  font-weight: normal; 
+  margin-bottom: 0; 
   color: #555;
-  cursor: pointer; /* Indica que es clickeable */
+  cursor: pointer; 
 }
 
 .formulario button[type="button"] {
-  background-color: #28a745; /* Un verde vibrante para el botón de enviar */
+  background-color: #28a745; 
   color: white;
   padding: 12px 25px;
   border: none;
   border-radius: 5px;
   font-weight: bold;
   font-size: 1.1rem;
-  width: 100%; /* Botón al 100% del ancho del formulario */
-  max-width: 250px; /* Pero con un ancho máximo para no ser demasiado grande */
+  width: 100%; 
+  max-width: 250px;
   display: block;
-  margin: 20px auto 0 auto; /* Centrar el botón */
+  margin: 20px auto 0 auto; 
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .formulario button[type="button"]:hover {
-  background-color: #218838; /* Verde más oscuro al pasar el ratón */
-  transform: translateY(-2px); /* Pequeño efecto de elevación */
+  background-color: #218838; 
+  transform: translateY(-2px); 
 }
 
-/* --- Responsive para el formulario --- */
 @media (max-width: 600px) {
   #form-section {
-    margin-top: 50px; /* Un poco menos de margen en móviles */
+    margin-top: 50px; 
     padding: 20px 10px;
   }
 
@@ -313,18 +312,18 @@ footer {
 
   .formulario input[type="text"],
   .formulario input[type="email"] {
-    width: 100%; /* Asegura que ocupen todo el ancho en pantallas pequeñas */
+    width: 100%; 
     padding: 10px;
   }
 
   .formulario .radio-group {
-    flex-direction: column; /* Apila los radios en pantallas muy pequeñas */
+    flex-direction: row; 
     align-items: flex-start;
     gap: 10px;
   }
 
   .formulario button[type="button"] {
-    max-width: 100%; /* Botón ocupa todo el ancho */
+    max-width: 100%; 
   }
 }
 

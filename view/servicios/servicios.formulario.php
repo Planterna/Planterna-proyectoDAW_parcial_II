@@ -31,16 +31,12 @@
         <input type="text" id="modelo" name="modelo" required>
 
         <label>Tipo de Servicio:</label>
-        <div class="radio-group">
-          <input type="radio" id="mantenimiento" name="servicio" value="Mantenimiento">
-          <label for="mantenimiento">Mantenimiento Preventivo</label>
-
-          <input type="radio" id="reparaciones" name="servicio" value="Reparaciones">
-          <label for="reparaciones">Reparaciones</label>
-
-          <input type="radio" id="tecnico" name="servicio" value="Servicio Tecnico">
-          <label for="tecnico">Servicio Técnico</label>
-        </div>
+                <select name="select">
+                  <option value="ninguna" selected>Ninguna</option>
+                  <option value="mantenimiento">Mantenimiento Preventivo</option>
+                  <option value="reparaciones">Reparaciones</option>
+                  <option value="tecnico">Servicio Técnico</option>
+              </select>
         <button type="button" id="enviar">
           Enviar Solicitud
         </button>
