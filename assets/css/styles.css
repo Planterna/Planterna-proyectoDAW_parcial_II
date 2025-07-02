@@ -173,19 +173,19 @@ footer {
     border-radius: 10px;
 }  
 #form-section {
-  padding: 40px 20px; /* Añade un buen padding alrededor */
-  max-width: 800px; /* Limita el ancho para que no sea demasiado grande en pantallas amplias */
-  margin: 75px auto 40px auto; /* Margin-top desde aquí, centrado horizontalmente */
-  background-color: #f8f9fa; /* Un fondo claro para la sección */
+  padding: 40px 20px; 
+  max-width: 800px; 
+  margin: 75px auto 40px auto; 
+  background-color: #f8f9fa; 
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
-  text-align: center; /* Centra el contenido textual dentro de esta sección */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  text-align: center;
 }
 
 .contenedor_solicitud {
   display: flex;
-  flex-direction: column; /* Apila los elementos verticalmente */
-  align-items: center; /* Centra el contenido horizontalmente */
+  flex-direction: column; 
+  align-items: center; 
   padding: 20px;
 }
 
@@ -201,75 +201,52 @@ footer {
   color: #666;
   margin-bottom: 30px;
   line-height: 1.6;
-  max-width: 600px; /* Limita el ancho del párrafo para mejor lectura */
+  max-width: 600px; 
   text-align: center;
 }
 
 .contenedor_formulario {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 500px; /* Ancho máximo para el formulario en sí */
+  width: 100%; 
+  max-width: 500px; 
 }
 
 .formulario {
-  text-align: left; /* Alinea las etiquetas y campos a la izquierda */
+  text-align: left; 
   padding: 30px;
-  border: 1px solid #ddd; /* Borde más sutil */
+  border: 1px solid #ddd; 
   border-radius: 8px;
-  background-color: #fff; /* Fondo blanco para el formulario */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra más ligera */
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
 }
 
 .formulario label {
-  display: block; /* Cada etiqueta en su propia línea */
+  display: block; 
   margin-bottom: 8px;
   font-weight: bold;
-  color: #333; /* Color de texto más oscuro */
+  color: #333; 
   font-size: 1rem;
 }
 
 .formulario input[type="text"],
-.formulario input[type="email"] { /* Agregué email por si lo usas */
-  width: calc(100% - 16px); /* 100% menos el padding */
+.formulario input[type="email"] { 
+  width: calc(100% - 16px);
   padding: 12px;
-  margin-bottom: 20px; /* Más espacio entre campos */
+  margin-bottom: 20px; 
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #f0f0f0; /* Un gris muy claro para el fondo del input */
+  background-color: #f0f0f0; 
   color: #333;
   font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición para focus */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .formulario input[type="text"]:focus,
 .formulario input[type="email"]:focus {
-  border-color: #007bff; /* Color de borde al enfocar */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
-  outline: none; /* Elimina el contorno predeterminado del navegador */
+  border-color: #007bff; 
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  outline: none; 
 }
 
-.formulario .radio-group {
-  display: flex;
-  flex-wrap: wrap; /* Permite que los radios se envuelvan en líneas si no hay espacio */
-  justify-content: flex-start; /* Alinea al inicio */
-  align-items: center;
-  margin-bottom: 25px; /* Espacio debajo del grupo de radios */
-  gap: 15px; /* Espacio entre cada par de radio/label */
-}
-
-.formulario .radio-group input[type="radio"] {
-  display: inline-block;
-  width: auto; /* Permite que el radio tome su tamaño natural */
-  margin-right: 5px; /* Espacio entre el radio y su label */
-  /* Puedes estilizar el radio button si quieres, pero es más complejo */
-}
-
-.formulario .radio-group label {
-  display: inline-block; 
-  font-weight: normal; 
-  margin-bottom: 0; 
-  color: #555;
-  cursor: pointer; 
-}
 
 .formulario button[type="button"] {
   background-color: #28a745; 
@@ -292,40 +269,6 @@ footer {
   transform: translateY(-2px); 
 }
 
-@media (max-width: 600px) {
-  #form-section {
-    margin-top: 50px; 
-    padding: 20px 10px;
-  }
-
-  .contenedor_solicitud h2 {
-    font-size: 2rem;
-  }
-
-  .contenedor_solicitud p {
-    font-size: 1rem;
-  }
-
-  .formulario {
-    padding: 20px;
-  }
-
-  .formulario input[type="text"],
-  .formulario input[type="email"] {
-    width: 100%; 
-    padding: 10px;
-  }
-
-  .formulario .radio-group {
-    flex-direction: row; 
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .formulario button[type="button"] {
-    max-width: 100%; 
-  }
-}
 
 /* Para modulo productos */
 
