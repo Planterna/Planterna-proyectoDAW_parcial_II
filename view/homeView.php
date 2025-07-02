@@ -12,7 +12,7 @@
   <section class="seccion">
     <h2>¿Quiénes Somos?</h2>
     <p>
-      Somos un taller automotriz con más de 10 años brindando servicios de calidad, profesionalismo y atención personalizada. 
+      AAAAA Somos un taller automotriz con más de 10 años brindando servicios de calidad, profesionalismo y atención personalizada. 
       Nuestro equipo está formado por técnicos altamente capacitados, comprometidos con mantener tu vehículo en óptimas condiciones.
     </p>
     <p>
