@@ -1,3 +1,12 @@
+<?php  
+if (!isset($_SESSION))  session_start();
+        
+// if(empty($_SESSION['user'])){ //simulacion manejo de variables de sesion
+//      // redireccionar al login
+     
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,7 +30,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?c=Servicios&f=index">Reparaciones</a>
@@ -42,6 +51,20 @@
         </div>
     </nav>
 </header>
+<?php
+       
+        if (!empty($_SESSION['mensaje'])) {
+            ?>
+            <div style="margin-top: 75px;" class="alert alert-<?php echo $_SESSION['color']; ?>
+             alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['mensaje']; ?>  
+            </div>
+            <?php
+            //eliminando las variables de sesion
+            unset($_SESSION['mensaje']);
+            unset($_SESSION['color']);
+        }//end if 
+        ?>
 
     
 

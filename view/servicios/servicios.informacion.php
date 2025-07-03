@@ -33,7 +33,7 @@
         <div class="col-12 mt-4 text-center"> 
             <div class="d-grid gap-2 col-md-6 mx-auto"> 
                 <a href="index.php?c=Servicios&f=formInit" class="btn btn-primary btn-lg w-100" role="button">Solicitar Servicios</a> 
-                <a href="URL_PARA_ESTADO_SERVICIOS.html" class="btn btn-secondary btn-lg w-100" role="button">Estado de Servicios</a> 
+                <a href="index.php?c=Servicios&f=formSearch" class="btn btn-secondary btn-lg w-100" role="button">Estado de Servicios</a> 
             </div>
         </div>
     </div>

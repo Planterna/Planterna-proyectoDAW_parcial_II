@@ -248,7 +248,7 @@ footer {
 }
 
 
-.formulario button[type="button"] {
+.formulario .enviar {
   background-color: #28a745; 
   color: white;
   padding: 12px 25px;
@@ -264,7 +264,7 @@ footer {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.formulario button[type="button"]:hover {
+.formulario .enviar:hover {
   background-color: #218838; 
   transform: translateY(-2px); 
 }
