@@ -20,4 +20,3 @@
         $cont = new  $controlador();// creacion del objeto controlador 
         //llamada a la funcion
         $cont->$funcion();// llamada a la funcion del controlador
-

@@ -12,6 +12,7 @@ define("VSERVICIOS", "view/servicios/servicios.");
 // ruta de vistas modulo productos
 define("VPRODUCTOS", "view/productos/productos.");
 // ruta de vistas modulo login - principal
+define("VLOGIN", "view/login/login.");  
 // ruta de vistas modulo cotizaciones
 // ruta de vistas modulo servicios
 

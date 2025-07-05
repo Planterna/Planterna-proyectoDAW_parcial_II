@@ -35,7 +35,7 @@
             $rol = 1;
             // $rol = $this->model->searchRol();
             //remplazar por el id cuando este el login
-            $resultados = $this->model->selectAllforId("1");
+            $resultados = $this->model->selectAllforId("3");
 
             require_once VSERVICIOS . 'consultas.php';
         }

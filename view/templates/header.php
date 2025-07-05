@@ -46,7 +46,7 @@ if (!isset($_SESSION))  session_start();
 
             <div class="d-flex align-items-center">
                 <a href="#" class="ms-3"><i class="fa-solid fa-question text-dark"></i></a>
-                <a href="#" class="ms-3"><i class="fa-solid fa-user text-dark"></i></a>
+                <a href="index.php?c=login&f=index" class="ms-3"><i class="fa-solid fa-user text-dark"></i></a>
             </div>
         </div>
     </nav>
