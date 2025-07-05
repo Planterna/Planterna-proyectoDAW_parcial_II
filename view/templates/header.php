@@ -45,8 +45,8 @@ if (!isset($_SESSION))  session_start();
             </div>
 
             <div class="d-flex align-items-center">
-                <span class="ms-3"><i class="fa-solid fa-question text-dark"></i></span>
-                <span class="ms-3"><i class="fa-solid fa-user text-dark"></i></span>
+                <a href="#" class="ms-3"><i class="fa-solid fa-question text-dark"></i></a>
+                <a href="#" class="ms-3"><i class="fa-solid fa-user text-dark"></i></a>
             </div>
         </div>
     </nav>
@@ -55,7 +55,7 @@ if (!isset($_SESSION))  session_start();
        
         if (!empty($_SESSION['mensaje'])) {
             ?>
-            <div style="margin-top: 75px;" class="alert alert-<?php echo $_SESSION['color']; ?>
+            <div style="margin-top: 65px;" class="alert alert-<?php echo $_SESSION['color']; ?>
              alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['mensaje']; ?>  
             </div>
@@ -63,6 +63,9 @@ if (!isset($_SESSION))  session_start();
             //eliminando las variables de sesion
             unset($_SESSION['mensaje']);
             unset($_SESSION['color']);
+        } else{?>
+        <div style="margin-top: 65px"></div>
+            <?php
         }//end if 
         ?>
 

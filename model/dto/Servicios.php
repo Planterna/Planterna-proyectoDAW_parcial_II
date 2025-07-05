@@ -6,7 +6,7 @@ class Servicio {
     //properties
     private $id, $nombre, $cedula, $telefono, $correo, 
     $marcaVehiculo, $placaVehiculo,$tipoServicio, $id_user, $id_tecnico,
-    $estado, $fechaCreacion ,$fechaModificacion;
+    $estado, $fechaCreacion ,$fechaModificacion, $statusLogical;
 
     function __construct() {
         
@@ -66,7 +66,15 @@ class Servicio {
         return $this->fechaCreacion;
     }
 
+     function getStatusLogical() {
+        return $this->statusLogical;
+    }
+    
+
     // Methods set
+    function setId($id) {
+        $this->id = $id;
+    }
 
     function setNombre($nombre) {
         $this->nombre = $nombre;
@@ -113,5 +121,7 @@ class Servicio {
         $this->fechaCreacion = $fechaCreacion;
     }
     
-    
+    function setStatusLogical($statusLogical) {
+        $this->statusLogical = $statusLogical;
+    }
 }

@@ -76,9 +76,9 @@ class RepuestosDAO{
             $stmt->bindParam(":modelo", $repuesto['rep_modelo'], PDO::PARAM_STR);
             $stmt->bindParam(":precio", $repuesto['rep_precio'], PDO::PARAM_STR);
             $stmt->bindParam(":stock", $repuesto['rep_stock'], PDO::PARAM_INT);
-            $stmt->bindParam(":fecha_registro", $prepuesto['rep_fecha_registro'], PDO::PARAM_STR);
-            $stmt->bindParam(":fecha_actualizacion", $repuesto['rep_fecha_actualizacion'], POD::PARAM_STR);
-            $stmt->bindParam(":tipo_repuesto", $repuesto['rep_tipo_repuesto'], POD::PARAM_STR);
+            $stmt->bindParam(":fecha_registro", $repuesto['rep_fecha_registro'], PDO::PARAM_STR);
+            $stmt->bindParam(":fecha_actualizacion", $repuesto['rep_fecha_actualizacion'], PDO::PARAM_STR);
+            $stmt->bindParam(":tipo_repuesto", $repuesto['rep_tipo_repuesto'], PDO::PARAM_STR);
 
             return $stmt->execute();
         }catch(PDOException $ex){

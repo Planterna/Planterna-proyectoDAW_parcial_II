@@ -1,7 +1,7 @@
 <!--autor: Jonathan Alejandro Baquerizo--> 
 
 <?php require_once HEADER ?>
-<div class="container-sm" style="margin-top: 75px;">
+<div class="container-sm">
     <h2 class="titulos_h2 text-center mb-4">Servicios disponibles</h2>
     <div class="row">
         <div class="col-12">
