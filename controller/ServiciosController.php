@@ -38,12 +38,8 @@
         {
             $rol = 2;
             // $rol = $this->model->searchRol();
-
-            if($rol == 1){
-                $resultados = $this->model->selectAllforId("3");
-            }elseif($rol == 2 || $rol == 3){
-                $resultados = $this->model->selectAllItems();
-            }
+            //remplazar por el id cuando este el login
+            $resultados = $this->model->selectAllforId("1");
 
             require_once VSERVICIOS . 'consultas.php';
         }

@@ -4,8 +4,8 @@
       <h1>Servicio Automotriz Profesional</h1>
       <p>Calidad, tecnología y confianza. Accede a los beneficios que ofrecemos</p>
       <div class="buttons">
-        <a href="acceder.html" class="btn-primary">Accede ya</a>
-        <a href="#ofrecemos" class="btn-secondary">Que ofrecemos</a>
+        <a href="index.php?c=login&f=index" class="btn btn-primary me-3">Accede ya</a>
+        <a href="#ofrecemos" class="btn btn-outline-secondary">¿Qué ofrecemos?</a>
       </div>
     </div> 
   </main>
