@@ -10,13 +10,17 @@
                 <button type="submit" class="btn btn-outline-success"><i class="fas fa-search"></i></button>
             </form>
         </div>
-        <div class="col-sm-6 d-flex flex-column align-items-end">
+        <?php if($rol == 1 || $rol == 3) {  ?>
+            <div class="col-sm-6 d-flex flex-column align-items-end">
             <a href="index.php?c=servicios&f=formInit">
                 <button type="button" class="btn btn-primary">
                     <i class="fas fa-plus"></i>
                     Nuevo</button>
             </a>
         </div>
+         <?php
+       }
+        ?>  
     </div>
     <?php
     if ($rol == 1) {
@@ -88,21 +92,50 @@
                 foreach ($resultados as $servicio) {
                 ?>
                     <tr>
-                        <td><?php echo $servicio['nombre']; ?></td>
-                        <td><?php echo $servicio['telefono']; ?></td>
-                        <td><?php echo $servicio['correo']; ?></td>
-                        <td><?php echo $servicio['marcaVehiculo'] ?></td>
-                        <td><?php echo $servicio['placaVehiculo'] ?></td>
-                        <td><?php echo $servicio['tipoServicio'] ?></td>
-                        <td><?php echo $servicio['estado'] ?></td>
-
+                        <td><?php echo htmlspecialchars($servicio['nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($servicio['telefono']); ?></td>
+                        <td><?php echo htmlspecialchars($servicio['correo']); ?></td>
+                        <td><?php echo htmlspecialchars($servicio['marcaVehiculo']); ?></td>
+                        <td><?php echo htmlspecialchars($servicio['placaVehiculo']); ?></td>
                         <td>
-                            <?php if ($servicio['estado'] == "EN ESPERA") { ?>
-                                <a class="btn btn-primary" href="index.php?c=servicios&f=view_edit&id=<?php echo $servicio['id_Registro']; ?>">Editar</a>
-                                <a class="btn btn-primary" onclick="if(!confirm('Estas Seguro?'))return false" href="index.php?c=servicios&f=delete&id=<?php echo $servicio['id_Registro']; ?>">Eliminar</a>
-                            <?php
-                            } ?>
+                            <form action="index.php?c=servicios&f=changeService" method="POST">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($servicio['id_Registro']); ?>">
+                                <select id="tipoServicio_<?php echo htmlspecialchars($servicio['id_Registro']); ?>" name="tipoServicio" class="form-control">
+                                    <?php
+                                    $typeService = ["MANTENIMIENTO PREVENTIVO", "REPARACIONES", "SERVICIO TECNICO"];
+                                    foreach ($typeService as $type) {
+                                        $selected = ($servicio['tipoServicio'] == $type) ? "selected" : "";
+                                    ?>
+                                        <option <?php echo $selected; ?> value="<?php echo htmlspecialchars($type); ?>">
+                                            <?php echo htmlspecialchars($type); ?>
+                                        </option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                         </td>
+                        <td>
+                            <select id="estado_<?php echo htmlspecialchars($servicio['id_Registro']); ?>" name="estado" class="form-control">
+                                <?php
+                                $typeStatus = ["EN ESPERA", "EN PROCESO", "TRABAJANDO", "TERMINADO"];
+                                foreach ($typeStatus as $type) {
+                                    $selected = ($servicio['estado'] == $type) ? "selected" : "";
+                                ?>
+                                    <option <?php echo $selected; ?> value="<?php echo htmlspecialchars($type); ?>">
+                                        <?php echo htmlspecialchars($type); ?>
+                                    </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </td>
+                        <td>
+                            <?php if ($servicio['estado'] !== "TERMINADO") { ?>
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro de aplicar los cambios?')">Guardar Cambios</button>
+                            <?php
+                            }
+                            ?>
+                            </form> </td>
                     </tr>
                 <?php
                 }
@@ -117,7 +150,7 @@
     </div>
     </div>
 <?php
-    }
+}
 ?>
 
 <?php require_once FOOTER ?>

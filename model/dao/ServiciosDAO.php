@@ -59,6 +59,23 @@
      
     }
 
+    public function selectAllItems(){
+        try{
+            $sql = "select * from registroservicio where statusLogical=1" ;
+            //prepare statement 
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute();
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            return $res;  
+         
+        }catch(PDOEXception $er){
+            error_log("Error en selectAllForId de ServiciosDAO ". $er->getMessage());
+            return null;
+        }
+
+     
+    }
+
     public function selectOne($id){
         try{
            $sql="select * from registroservicio where id_Registro=:id";
@@ -110,6 +127,26 @@
           $stmt->bindParam(":correo",$servicio->getCorreo(), PDO::PARAM_STR);
           $stmt->bindParam(":marcaVehiculo",$servicio->getmarcaVehiculo(), PDO::PARAM_STR);
           $stmt->bindParam(":placaVehiculo",$servicio->getplacaVehiculo(), PDO::PARAM_STR);
+          $stmt->bindParam(":fechaMod",$servicio->getfechaModificacion(), PDO::PARAM_STR);
+          $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
+
+         $res= $stmt->execute(); // execute retorna true si tuvo exito la ejecucion, false en caso contrario
+         return $res;
+        }catch(PDOEXception $er){
+            error_log("Error en update de ServiciosDAO ". $er->getMessage());
+            return false;
+        }
+    }
+
+    public function updateTec($servicio){
+         try{
+        //    $sql="update registroServicio set fechaModificacion=:fechaMod, id_tecnico=:id_tec,tipoServicio=:typeSer
+        //    , estado=:estado where id_Registro=:id";
+        $sql="update registroServicio set fechaModificacion=:fechaMod, tipoServicio=:typeSer, estado=:estado where id_Registro=:id";
+          $stmt = $this->con->prepare($sql);
+          $stmt->bindParam(":typeSer",$servicio->getTipoServicio(), PDO::PARAM_STR);
+          $stmt->bindParam(":estado",$servicio->getEstado(), PDO::PARAM_STR);
+         // $stmt->bindParam(":id_tec",$servicio->getId_tecnico(), PDO::PARAM_STR);
           $stmt->bindParam(":fechaMod",$servicio->getfechaModificacion(), PDO::PARAM_STR);
           $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
 

@@ -27,15 +27,23 @@
 
         public function formInit()
         {
+            $rol = 2;
+            // $rol = $this->model->searchRol();
+            if($rol == 1 || $rol == 3 ){
             require_once VSERVICIOS . 'formulario.php';
+            }
         }
 
         public function formSearch()
         {
-            $rol = 1;
+            $rol = 2;
             // $rol = $this->model->searchRol();
-            //remplazar por el id cuando este el login
-            $resultados = $this->model->selectAllforId("1");
+
+            if($rol == 1){
+                $resultados = $this->model->selectAllforId("3");
+            }elseif($rol == 2 || $rol == 3){
+                $resultados = $this->model->selectAllItems();
+            }
 
             require_once VSERVICIOS . 'consultas.php';
         }
@@ -104,11 +112,6 @@
                 //$this->redirectWithMessage(false, "Acceso denegado", "No tiene permiso para acceder a esta página", "index.php");
             }
 
-            //verificar los parametros enviados por el formulario
-            if (empty($_POST['id']) && empty($_POST['nombre']) && empty($_POST['precio']) && empty($_POST['categoria'])) {
-                $this->message->redirectWithMessage(false, "Faltan datos obligatorios", "No se pudo editar el servicio", "index.php?c=servicios&f=view_edit&id=" . $_POST['id']);
-            }
-
             $name =  $this->util->validateName($_POST['nombre']);
             $cedula = $this->util->validateNumber($_POST['cedula'], "Cédula");
             $telefono = $this->util->validateNumber($_POST['telefono'], "Teléfono");
@@ -131,6 +134,27 @@
             
         }
 
+        
+        public function changeService()
+        {
+            //ejemplo validar ingreso a acciones segun el rol del usuario
+            if (!isset($_SESSION)) session_start();
+            if (empty($_SESSION['rol'] && $_SESSION['rol'] !== 'admin')) {
+                //$this->redirectWithMessage(false, "Acceso denegado", "No tiene permiso para acceder a esta página", "index.php");
+            }
+          
+            //$id_tec = $this->util->validBasic($_POST['id_user'], "id tecnico");
+            $tipoServicio = $this->util->validBasic($_POST['tipoServicio'], "tipo de Servicio");
+            $estado = $this->util->validBasic($_POST['estado'], "estado");
+            $result = ($estado == "success" && $tipoServicio == "success") ? true: false;
+                $serv = $this->populateTec();
+                //guardar (llamando al modelo)
+                $test = $result ? $this->model->updateTec($serv): false;
+            
+                $this->message->redirectWithMessage($test , "servicio editado exitosamente", "No se pudo editar el servicio ", "index.php?c=servicios&f=formSearch");
+
+        }
+
         public function populate()
         {
             //lectura de parametros
@@ -140,11 +164,27 @@
             $serv->setCedula(htmlentities($_POST['cedula']));
             $serv->setTelefono(htmlentities($_POST['telefono']));
             $serv->setCorreo(htmlentities($_POST['correo']));
+            $serv->setId_user(htmlentities($_POST['id_user'] ? $_POST['id_user'] : null));
             $serv->setMarcaVehiculo(htmlentities(strtoupper($_POST['marcaVehiculo'])));
             $serv->setPlacaVehiculo(htmlentities(strtoupper($_POST['placaVehiculo'])));
             $serv->setTipoServicio(htmlentities($_POST['tipoServicio']));
             $fecha = new DateTime('now');
             $serv->setFechaCreacion($fecha->format("Y-m-d H:i:s"));
+            $fechaMod = new DateTime('now');
+            $serv->setfechaModificacion($fechaMod->format("Y-m-d H:i:s"));
+            $serv->setStatusLogical(htmlentities($_POST["statusLogical"]));
+            
+            return $serv;
+        }
+
+        public function populateTec()
+        {
+            //lectura de parametros
+            $serv = new Servicio();
+            $serv->setId(htmlentities((isset($_POST['id'])) ? $_POST['id'] : null));
+            $serv->setTipoServicio(htmlentities($_POST['tipoServicio']));
+            $serv->setEstado(htmlentities($_POST['estado']));
+            //$serv->setId_tecnico(htmlentities($_POST['id_user'] ? $_POST['id_user'] : null));
             $fechaMod = new DateTime('now');
             $serv->setfechaModificacion($fechaMod->format("Y-m-d H:i:s"));
             $serv->setStatusLogical(htmlentities($_POST["statusLogical"]));

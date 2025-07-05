@@ -30,7 +30,7 @@
     <button class="Deslizante-btn left" onclick="moverDeslizante(-1)">&#10094;</button>
 
     <div class="Deslizante" id="Deslizante">
-      <a href="servicios/servicios_reparaciones.html" class="oferta" style="text-decoration: none; color: inherit;">
+      <a href="index.php?c=Servicios&f=index" class="oferta" style="text-decoration: none; color: inherit;">
         <img src="https://www.jacsautocare.com/images/taller-de-mecanica-general-en-guayaquil.jpg" alt="Reparaciones mecanicas" />
         <h3>Reparaciones mecánicas</h3>
         <p>Diagnóstico y solución de problemas del motor, suspensión y frenos.</p>
