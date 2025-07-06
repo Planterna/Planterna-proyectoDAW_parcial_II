@@ -22,10 +22,18 @@
 
         public function index()
         {
-            $this->util->validationSession();
-            $rol = $this->util->validationRole();
-            require_once VSERVICIOS . 'informacion.php';
-            
+
+            $res = false;
+            if ($res == false) {
+                $rol = 0;
+                require_once VSERVICIOS . 'informacion.php';
+            } else {
+                $this->util->validationSession();
+                $rol = $this->util->validationRole();
+                if ($rol == 1 || $rol == 2 || $rol == 3) {
+                    require_once VSERVICIOS . 'informacion.php';
+                }
+            }
         }
 
 
