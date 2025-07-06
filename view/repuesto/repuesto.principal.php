@@ -1,78 +1,24 @@
-<?php require_once HEADER;?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Repuestos</title>
-  <link rel="stylesheet" href="../../assets/css/styles.css" />
-</head>
+<?php require_once HEADER; ?>
 <body class="background-container">
 
   <div class="products">
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-    <div class="product">
-      <img src="assets/images/bujia_ngk.png" alt="Imagen de Una Bujía NGK" />
-      <h4>Bujía NGK</h4>
-      <p>Marca: NGK</p>
-      <p>Modelo: BKRSE</p>
-      <p>Precio: $10.00</p>
-      <button class="add-to-cart">Agregar al Carrito</button>
-    </div>
-  </div>
-
-  <div class="cart-model" id="cart-model">
-    <div></div>
+    <?php if (!empty($resultados)): ?>
+      <?php foreach ($resultados as $rep): ?>
+        <div class="product">
+          <img src="assets/images/<?= htmlspecialchars($rep['rep_imagen'] ?: 'default.png') ?>" 
+               alt="Imagen de <?= htmlspecialchars($rep['rep_nombre']) ?>" />
+          <h4><?= htmlspecialchars($rep['rep_nombre']) ?></h4>
+          <p>Marca: <?= htmlspecialchars($rep['mar_nombre']) ?></p>
+          <p>Modelo: <?= htmlspecialchars($rep['mod_nombre']) ?></p>
+          <p>Precio: $<?= number_format($rep['rep_precio'], 2) ?></p>
+          <button class="add-to-cart">Agregar al Carrito</button>
+        </div>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <p>No hay repuestos registrados.</p>
+    <?php endif; ?>
   </div>
 
 </body>
 </html>
-
-<?php require_once FOOTER ?>
+<?php require_once FOOTER; ?>
