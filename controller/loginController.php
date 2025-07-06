@@ -1,6 +1,6 @@
-<!--autor: John Steven Quijije Tovar-->
-
 <?php
+// Autor: John Steven Quijije Tovar
+
 require_once 'model/dto/Usuario.php';
 require_once 'model/dao/UsuariosDAO.php';
 require_once 'util/functionValidationsUser.php';
@@ -21,19 +21,29 @@ class LoginController
 
     public function index()
     {
-
         require_once VLOGIN . 'login.php';
     }
 
     public function registro()
     {
-
         require_once VLOGIN . 'registro.php';
     }
 
+    public function dashboard()
+    {
+    session_start();
+
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+        header("Location: index.php?c=login&f=index");
+        exit();
+    }
+    
+    require_once VLOGIN . 'dashboard.php';
+    }
+
+
     public function registrar()
     {
-
         $nombre = $_POST['nombre'] ?? '';
         $cedula = $_POST['cedula'] ?? '';
         $correo = $_POST['correo'] ?? '';
@@ -42,11 +52,9 @@ class LoginController
         $confirmar_password = $_POST['confirmar_password'] ?? '';
         $notificaciones = isset($_POST['notificaciones']) ? 1 : 0; 
 
-        
         $rol = 1; 
         $estado = 1; 
 
-        
         $v_nombre = $this->util->validateName($nombre);
         $v_cedula = $this->util->validateCedula($cedula); 
         $v_correo = $this->util->validateEmail($correo);
@@ -55,19 +63,16 @@ class LoginController
 
         $errores_list = [];
 
-        // Recopilar errores de las validaciones individuales
         if ($v_nombre !== "success") $errores_list[] = $v_nombre;
         if ($v_cedula !== "success") $errores_list[] = $v_cedula;
         if ($v_correo !== "success") $errores_list[] = $v_correo;
         if ($v_telefono !== "success") $errores_list[] = $v_telefono;
         if ($v_password !== "success") $errores_list[] = $v_password;
 
-        // Verificar confirmación de contraseña
         if ($password !== $confirmar_password) {
             $errores_list[] = "Las contraseñas no coinciden.";
         }
 
-        // Verificar si la cédula o el correo ya están registrados
         if ($this->model->buscarPorCedula($cedula)) {
             $errores_list[] = "La cédula ya está registrada.";
         }
@@ -75,55 +80,48 @@ class LoginController
             $errores_list[] = "El correo electrónico ya está registrado.";
         }
 
-        // Si hay errores, redirigir con el mensaje
         if (!empty($errores_list)) {
             $this->message->redirectWithMessage(false, "", "Error en los datos: <br>" . implode("<br>", $errores_list), "index.php?c=login&f=registro");
             exit;
         }
 
-        // Crear objeto Usuario DTO
         $usuarioObj = new Usuario();
         $usuarioObj->setNombre(htmlentities($nombre));
         $usuarioObj->setCedula(htmlentities($cedula));
         $usuarioObj->setCorreo(htmlentities($correo));
         $usuarioObj->setTelefono(htmlentities($telefono));
         $usuarioObj->setPassword(password_hash($password, PASSWORD_BCRYPT)); 
-        $usuarioObj->setRol($rol); // Rol por defecto
-        $usuarioObj->setEstado($estado); // Estado por defecto
-        $usuarioObj->setRecibirInfo($notificaciones); // Campo 'notificaciones'
+        $usuarioObj->setRol($rol); 
+        $usuarioObj->setEstado($estado); 
+        $usuarioObj->setRecibirInfo($notificaciones);
 
-        // Guardar usuario
         $exito = $this->model->insert($usuarioObj);
 
         $this->message->redirectWithMessage(
             $exito,
             "¡Registro exitoso! Ya puedes iniciar sesión.",
             "Error al registrar usuario. Inténtalo de nuevo.",
-            "index.php?c=login&f=index" // Redirigir a la página de inicio de sesión después del registro
+            "index.php?c=login&f=index"
         );
     }
 
     public function validar()
     {
-        // El formulario de inicio de sesión usa 'usuario' para cédula/correo y 'clave' para contraseña
         $input_usuario = $_POST['usuario'] ?? '';
         $input_clave = $_POST['clave'] ?? '';
 
         $usuario_data = null;
 
-        // Validar si el input_usuario es una cédula y buscarla
         $esCedulaValida = $this->util->validateCedula($input_usuario);
         if ($esCedulaValida === "success") {
             $usuario_data = $this->model->buscarPorCedula($input_usuario);
         }
 
-        // Si no se encontró por cédula o no era una cédula, intentar como correo
-        // Usamos validateEmail para asegurar que es un formato de email antes de buscar
         if (!$usuario_data) {
-             $esCorreoValido = $this->util->validateEmail($input_usuario);
-             if ($esCorreoValido === "success") {
-                 $usuario_data = $this->model->buscarPorCorreo($input_usuario);
-             }
+            $esCorreoValido = $this->util->validateEmail($input_usuario);
+            if ($esCorreoValido === "success") {
+                $usuario_data = $this->model->buscarPorCorreo($input_usuario);
+            }
         }
 
         if ($usuario_data && password_verify($input_clave, $usuario_data['password'])) {
@@ -133,7 +131,9 @@ class LoginController
             $_SESSION['rol'] = $usuario_data['rol'];
             $_SESSION['loggedIn'] = true;
 
-            $this->message->redirectWithMessage(true, "¡Bienvenido " . $_SESSION['nombre'] . "!", "", "index.php");
+            setcookie("usuario", $_SESSION['nombre'], time() + (86400 * 30), "/");
+
+            $this->message->redirectWithMessage(true, "¡Bienvenido " . $_SESSION['nombre'] . "!", "", "index.php?c=login&f=dashboard");
         } else {
             $this->message->redirectWithMessage(false, "", "Credenciales incorrectas. Verifique su usuario/correo y contraseña.", "index.php?c=login&f=index");
         }
@@ -143,6 +143,7 @@ class LoginController
     {
         session_start();
         session_destroy();
+        setcookie("usuario", "", time() - 3600, "/"); 
         header("Location: index.php?c=login&f=index");
         exit();
     }

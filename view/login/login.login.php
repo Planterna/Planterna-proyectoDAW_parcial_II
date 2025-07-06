@@ -5,7 +5,7 @@
 <main class="d-flex flex-column align-items-center justify-content-center bg-light" style="min-height: 80vh; padding-top: 20px;">
   <div class="bg-white p-5 rounded shadow" style="min-width: 350px;">
     <div class="text-center mb-4">
-      <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; font-weight: bold;">T-Auto</h1>
+      <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 2rem; font-weight: bold;">T-Auto</h1>
       <h2 class="fw-bold mt-3">Inicia Sesión</h2>
       <p class="text-muted">Accede a tu cuenta para gestionar tus servicios</p>
     </div>

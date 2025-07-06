@@ -3,7 +3,7 @@
 <?php require_once HEADER; ?>
 <div class="container py-5 bg-light"> 
   <div class="card p-4 mx-auto" style="max-width: 600px;"> 
-    <h2 class="card-title text-center mb-4">Crear Cuenta</h2> 
+    <h1 class="text-center" style="font-family: 'Times New Roman', Times, serif; font-size: 2.5rem; font-weight: bold;">Crear Cuenta</h1>
     <p class="text-center mb-4">Llena el formulario para registrarte en el sistema.</p> 
    
    

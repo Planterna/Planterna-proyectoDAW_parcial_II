@@ -3,16 +3,16 @@
 <?php
 
 class Usuario {
-    private $id_user; // Cambiado de $id a $id_user para coincidir con la DB
+    private $id_user; 
     private $nombre;
     private $cedula;
     private $correo;
     private $telefono;
     private $password;
     private $rol;
-    private $estado; // Añadido para reemplazar 'eliminado'
-    private $notificaciones; // Añadido
-    private $fecha_creacion; // Añadido
+    private $estado; 
+    private $notificaciones; 
+    private $fecha_creacion; 
 
     public function __construct() {}
 
