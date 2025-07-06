@@ -22,20 +22,23 @@
 
         public function index()
         {
-            $rol = 1;
-
+            $rol = $this->util->validationRole();
             require_once VSERVICIOS . 'informacion.php';
-
+            
         }
+
 
         public function formInit()
         {
-            $rol = 1;
-            // $rol = $this->model->searchRol();
-            if($rol == 1 || $rol == 3 ){
-            require_once VSERVICIOS . 'formulario.php';
-            }else{
-                require_once VSERVICIOS .  'informacion.php';
+            $res = $this->util->validationSession();
+            if ($res) {
+                $rol = $_SESSION['rol'];
+                // $rol = $this->model->searchRol();
+                if ($rol == 1 || $rol == 3) {
+                    require_once VSERVICIOS . 'formulario.php';
+                } else {
+                    require_once VSERVICIOS .  'informacion.php';
+                }
             }
         }
 
@@ -44,14 +47,14 @@
             $rol = 1;
             // $rol = $this->model->searchRol();
 
-            if($rol == 1){
+            if ($rol == 1) {
                 $resultados = $this->model->selectAllforId("3");
-            }elseif($rol == 2 || $rol == 3){
+            } elseif ($rol == 2 || $rol == 3) {
                 $resultados = $this->model->selectAllItems();
             }
 
             require_once VSERVICIOS . 'consultas.php';
-        }   
+        }
         public function view_edit()
         {
             //leer el id del servicio
@@ -72,19 +75,19 @@
             $marcaVehiculo = $this->util->validateName($_POST['marcaVehiculo']);
             $placaVehiculo = $this->util->validatePlaca($_POST['placaVehiculo']);
             $tipoServicio = $this->util->validBasic($_POST['tipoServicio'], "tipo de Servicio");
-            $errores = $this->util->addError($name, $cedula, $telefono, $correo, $placaVehiculo,$marcaVehiculo, $tipoServicio);
+            $errores = $this->util->addError($name, $cedula, $telefono, $correo, $placaVehiculo, $marcaVehiculo, $tipoServicio);
 
             $result = ($name == "success" && $cedula == "success" &&
                 $telefono == "success" && $correo == "success" &&
                 $marcaVehiculo == "success" && $placaVehiculo == "success" && $tipoServicio == "success"
-            ) ? true: false; 
+            ) ? true : false;
 
             //leer los parametros del formulario
             $serv = $this->populate();
             //guardar (llamando al modelo)
-            $test = $result ? $this->model->update($serv): false;
-            
-            $this->message->redirectWithMessage($test , "servicio editado exitosamente", "No se pudo editar el servicio, " . $errores, "index.php?c=servicios&f=formInit");
+            $test = $result ? $this->model->update($serv) : false;
+
+            $this->message->redirectWithMessage($test, "servicio editado exitosamente", "No se pudo editar el servicio, " . $errores, "index.php?c=servicios&f=formInit");
         }
 
 
@@ -123,22 +126,20 @@
             $marcaVehiculo = $this->util->validateName($_POST['marcaVehiculo']);
             $placaVehiculo = $this->util->validatePlaca($_POST['placaVehiculo']);
             $tipoServicio = $this->util->validBasic($_POST['tipoServicio'], "tipo de Servicio");
-            $errores = $this->util->addError($name, $cedula, $telefono, $correo, $placaVehiculo,$marcaVehiculo, $tipoServicio);
+            $errores = $this->util->addError($name, $cedula, $telefono, $correo, $placaVehiculo, $marcaVehiculo, $tipoServicio);
 
             $result = ($name == "success" && $cedula == "success" &&
                 $telefono == "success" && $correo == "success" &&
                 $marcaVehiculo == "success" && $placaVehiculo == "success" && $tipoServicio == "success"
-            ) ? true: false;
-                $serv = $this->populate();
-                //guardar (llamando al modelo)
-                $test = $result ? $this->model->update($serv): false;
-            
-                $this->message->redirectWithMessage($test , "servicio editado exitosamente", "No se pudo editar el servicio, " . $errores, "index.php?c=servicios&f=view_edit&id=" . $serv->getId());
+            ) ? true : false;
+            $serv = $this->populate();
+            //guardar (llamando al modelo)
+            $test = $result ? $this->model->update($serv) : false;
 
-            
+            $this->message->redirectWithMessage($test, "servicio editado exitosamente", "No se pudo editar el servicio, " . $errores, "index.php?c=servicios&f=view_edit&id=" . $serv->getId());
         }
 
-        
+
         public function changeService()
         {
             //ejemplo validar ingreso a acciones segun el rol del usuario
@@ -146,17 +147,16 @@
             if (empty($_SESSION['rol'] && $_SESSION['rol'] !== 'admin')) {
                 //$this->redirectWithMessage(false, "Acceso denegado", "No tiene permiso para acceder a esta página", "index.php");
             }
-          
+
             //$id_tec = $this->util->validBasic($_POST['id_user'], "id tecnico");
             $tipoServicio = $this->util->validBasic($_POST['tipoServicio'], "tipo de Servicio");
             $estado = $this->util->validBasic($_POST['estado'], "estado");
-            $result = ($estado == "success" && $tipoServicio == "success") ? true: false;
-                $serv = $this->populateTec();
-                //guardar (llamando al modelo)
-                $test = $result ? $this->model->updateTec($serv): false;
-            
-                $this->message->redirectWithMessage($test , "servicio editado exitosamente", "No se pudo editar el servicio ", "index.php?c=servicios&f=formSearch");
+            $result = ($estado == "success" && $tipoServicio == "success") ? true : false;
+            $serv = $this->populateTec();
+            //guardar (llamando al modelo)
+            $test = $result ? $this->model->updateTec($serv) : false;
 
+            $this->message->redirectWithMessage($test, "servicio editado exitosamente", "No se pudo editar el servicio ", "index.php?c=servicios&f=formSearch");
         }
 
         public function populate()
@@ -177,7 +177,7 @@
             $fechaMod = new DateTime('now');
             $serv->setfechaModificacion($fechaMod->format("Y-m-d H:i:s"));
             $serv->setStatusLogical(htmlentities($_POST["statusLogical"]));
-            
+
             return $serv;
         }
 
@@ -192,7 +192,7 @@
             $fechaMod = new DateTime('now');
             $serv->setfechaModificacion($fechaMod->format("Y-m-d H:i:s"));
             $serv->setStatusLogical(htmlentities($_POST["statusLogical"]));
-            
+
             return $serv;
         }
     }

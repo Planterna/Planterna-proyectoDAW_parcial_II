@@ -32,9 +32,10 @@
                                     : 'index.php'; 
                             ?>">Inicio</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?c=Servicios&f=index">Reparaciones</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?c=Servicios&f=index">Servicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="index.php?c=Repuestos&f=index">Repuestos</a></li>
                         <li class="nav-item"><a class="nav-link" href="cotizaciones/cotizaciones.html">Cotizaciones</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?c=Servicios&f=index">Tecnicos a Domicilio</a></li>
                     </ul>
                 </div>
 

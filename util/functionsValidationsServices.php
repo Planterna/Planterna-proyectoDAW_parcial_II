@@ -95,4 +95,25 @@ class functionValidationsServices
 
         return $errores; 
     }
+
+    public function validationSession(){
+        if(!isset($_SESSION)) session_start();
+
+           if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true){
+            header("Location: index.php?c=login&f=index");
+            exit();
+            }
+            return true;
+        }
+       
+        public function validationRole(){
+            if (isset($_SESSION['rol'])) {
+                $rol = $_SESSION['rol'];
+            } else {
+                $rol = 0;
+            }
+            return $rol;
+            
+        }
+    
 }

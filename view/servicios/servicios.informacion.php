@@ -31,13 +31,20 @@
             </div>
         </div>
         <div class="col-12 mt-4 text-center"> 
+            <?php if($rol == 1 || $rol == 3 || $rol == 0){ ?>
             <div class="d-grid gap-2 col-md-6 mx-auto"> 
-                <?php if($rol == 1 || $rol == 3){ ?>
+                
                 <a href="index.php?c=Servicios&f=formInit" class="btn btn-primary btn-lg w-100" role="button">Solicitar Servicios</a>
-                <?php }
-                ?> 
+               
                 <a href="index.php?c=Servicios&f=formSearch" class="btn btn-secondary btn-lg w-100" role="button">Estado de Servicios</a> 
             </div>
+            <?php }elseif($rol == 2){?>
+                <div class="d-grid gap-2 col-md-6 mx-auto"> 
+                <a href="index.php?c=Servicios&f=formSearch" class="btn btn-secondary btn-lg w-100" role="button">Estado de Servicios</a> 
+            </div>
+            <?php
+            }
+            ?> 
         </div>
     </div>
 </div>
