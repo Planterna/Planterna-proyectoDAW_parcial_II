@@ -22,27 +22,20 @@
 
         public function index()
         {
+            if (!isset($_SESSION)) session_start();
 
-            $res = false;
-            if ($res == false) {
-                $rol = 0;
-                require_once VSERVICIOS . 'informacion.php';
-            } else {
-                $this->util->validationSession();
-                $rol = $this->util->validationRole();
-                if ($rol == 1 || $rol == 2 || $rol == 3) {
-                    require_once VSERVICIOS . 'informacion.php';
-                }
-            }
+            $rol = !empty($_SESSION['loggedIn']) ? ($_SESSION['rol'] ?? 0) : 0;
+
+            require_once VSERVICIOS . 'informacion.php';
         }
+
 
 
         public function formInit()
         {
-            $res = $this->util->validationSession();
-            if ($res) {
+            if ($this->util->validationSession()) {
+                $id_user = $this->util->validationId();
                 $rol = $_SESSION['rol'];
-                // $rol = $this->model->searchRol();
                 if ($rol == 1 || $rol == 3) {
                     require_once VSERVICIOS . 'formulario.php';
                 }
@@ -54,7 +47,6 @@
             $this->util->validationSession();
             $rol = $this->util->validationRole();
             $id = $this->util->validationId();
-            // $rol = $this->model->searchRol();
 
             if ($rol == 1) {
                 $resultados = $this->model->selectAllforId($id);
@@ -84,6 +76,8 @@
             $marcaVehiculo = $this->util->validateName($_POST['marcaVehiculo']);
             $placaVehiculo = $this->util->validatePlaca($_POST['placaVehiculo']);
             $tipoServicio = $this->util->validBasic($_POST['tipoServicio'], "tipo de Servicio");
+            
+
             $errores = $this->util->addError($name, $cedula, $telefono, $correo, $placaVehiculo, $marcaVehiculo, $tipoServicio);
 
             $result = ($name == "success" && $cedula == "success" &&
