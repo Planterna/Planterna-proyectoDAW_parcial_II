@@ -22,28 +22,36 @@
 
         public function index()
         {
+            $rol = 1;
+
             require_once VSERVICIOS . 'informacion.php';
+
         }
 
         public function formInit()
         {
-            $rol = 2;
+            $rol = 1;
             // $rol = $this->model->searchRol();
             if($rol == 1 || $rol == 3 ){
             require_once VSERVICIOS . 'formulario.php';
+            }else{
+                require_once VSERVICIOS .  'informacion.php';
             }
         }
 
         public function formSearch()
         {
-            $rol = 2;
+            $rol = 1;
             // $rol = $this->model->searchRol();
-            //remplazar por el id cuando este el login
-            $resultados = $this->model->selectAllforId("1");
+
+            if($rol == 1){
+                $resultados = $this->model->selectAllforId("3");
+            }elseif($rol == 2 || $rol == 3){
+                $resultados = $this->model->selectAllItems();
+            }
 
             require_once VSERVICIOS . 'consultas.php';
-        }
-
+        }   
         public function view_edit()
         {
             //leer el id del servicio
@@ -51,7 +59,7 @@
             //obtiene el servicio del modelo
             $serv = $this->model->selectOne($id);
             //llamar a la vista del formulario de editar servicio
-            require_once VSERVICIOS . "formularioEdit.php";
+            require_once VSERVICIOS . "formulario.php";
         }
 
         public function newService()

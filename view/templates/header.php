@@ -64,7 +64,7 @@ if (!isset($_SESSION))  session_start();
             unset($_SESSION['mensaje']);
             unset($_SESSION['color']);
         } else{?>
-        <div style="margin-top: 65px"></div>
+        <div style="margin-top: 85px"></div>
             <?php
         }//end if 
         ?>
