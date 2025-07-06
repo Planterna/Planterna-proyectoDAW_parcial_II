@@ -73,7 +73,7 @@
 </div>
 </div>
 
-<?php } elseif ($rol == 2) {
+<?php } elseif ($rol == 2 || $rol == 3) {
 ?>
     <div class="table-responsive mt-2">
         <table class="table table-striped table-bordered">

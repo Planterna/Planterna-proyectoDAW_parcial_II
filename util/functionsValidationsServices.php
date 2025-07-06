@@ -115,5 +115,14 @@ class functionValidationsServices
             return $rol;
             
         }
+
+        public function validationId(){
+             if (isset($_SESSION['id'])) {
+                $id_user = $_SESSION['id'];
+            } else {
+                $id_user = 0;
+            }
+            return $id_user;
+        }
     
 }

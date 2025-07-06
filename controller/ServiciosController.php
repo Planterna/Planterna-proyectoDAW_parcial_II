@@ -22,6 +22,7 @@
 
         public function index()
         {
+            $this->util->validationSession();
             $rol = $this->util->validationRole();
             require_once VSERVICIOS . 'informacion.php';
             
@@ -36,19 +37,19 @@
                 // $rol = $this->model->searchRol();
                 if ($rol == 1 || $rol == 3) {
                     require_once VSERVICIOS . 'formulario.php';
-                } else {
-                    require_once VSERVICIOS .  'informacion.php';
                 }
             }
         }
 
         public function formSearch()
         {
-            $rol = 1;
+            $this->util->validationSession();
+            $rol = $this->util->validationRole();
+            $id = $this->util->validationId();
             // $rol = $this->model->searchRol();
 
             if ($rol == 1) {
-                $resultados = $this->model->selectAllforId("3");
+                $resultados = $this->model->selectAllforId($id);
             } elseif ($rol == 2 || $rol == 3) {
                 $resultados = $this->model->selectAllItems();
             }
@@ -93,6 +94,8 @@
 
         public function search()
         {
+            $this->util->validationSession();
+            $rol = $this->util->validationRole();
             //leer los parametros enviados en las peticiones
             $parametro = htmlentities($_POST['b']); //falta verificar
             //comunicacion con el modelo para (obtener datos) traer la lista de todos los servicios
