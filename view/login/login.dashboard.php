@@ -20,7 +20,7 @@ require_once HEADER;
                     <div class="card-body">
                         <h5 class="card-title">Mis reparaciones</h5>
                         <p class="card-text">Consulta tus servicios activos.</p>
-                        <a href="index.php?c=servicios&f=listar" class="btn btn-outline-primary">Ver</a>
+                        <a href="index.php?c=servicios&f=formSearch" class="btn btn-outline-primary">Ver</a>
                     </div>
                 </div>
             </div>
