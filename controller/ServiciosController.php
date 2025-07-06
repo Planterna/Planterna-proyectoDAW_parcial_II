@@ -88,7 +88,7 @@
             //leer los parametros del formulario
             $serv = $this->populate();
             //guardar (llamando al modelo)
-            $test = $result ? $this->model->update($serv) : false;
+            $test = $result ? $this->model->insert($serv) : false;
 
             $this->message->redirectWithMessage($test, "servicio editado exitosamente", "No se pudo editar el servicio, " . $errores, "index.php?c=servicios&f=formInit");
         }
