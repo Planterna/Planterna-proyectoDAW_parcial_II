@@ -61,7 +61,7 @@
     // Mostrar mensaje flash si existe
     if (!empty($_SESSION['mensaje'])) {
         ?>
-        <div style="margin-top: 20px;" class="alert alert-<?php echo $_SESSION['color']; ?> alert-dismissible fade show" role="alert">
+        <div style="margin-top: 60px;" class="alert alert-<?php echo $_SESSION['color']; ?> alert-dismissible fade show" role="alert">
             <?php echo $_SESSION['mensaje']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
