@@ -122,7 +122,7 @@ class LoginController
             $this->message->redirectWithMessage(true, "¡Usuario registrado exitosamente!", "", $urlOk);
         } else {
             $urlFail = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
-                                : "index.php?c=login&f=registro";
+                                : "index.php?c=login&f=index";
             $this->message->redirectWithMessage(false, "", "Error al registrar usuario. Inténtalo de nuevo.", $urlFail);
         }
     }
@@ -224,7 +224,14 @@ class LoginController
     }
 
     // Puedes agregar aquí la función urlDashboardPorRol si no existe
-    // private function urlDashboardPorRol($rol) { ... }
+    private function urlDashboardPorRol($rol) {
+        switch ($rol) {
+            case 3:
+                return "index.php?c=login&f=dashboardAdmin";
+            default:
+                return "index.php?c=login&f=dashboard";
+        }
+    }
 }
 
 
