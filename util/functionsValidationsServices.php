@@ -81,7 +81,7 @@ class functionValidationsServices
         }
         return $msj;
     }
-    public function addError($name, $cedula, $telefono, $correo, $placa, $marca, $tipoServicio)
+    public function addError($name, $cedula, $telefono, $correo, $placa, $marca, $tipoServicio, $id_user)
     {
         $errores = "Errores: <br>";
 
@@ -92,6 +92,7 @@ class functionValidationsServices
         if ($placa !== "success")  $errores .= $placa . ". <br>";
         if ($marca !== "success") $errores .= $marca . ". <br>";
         if ($tipoServicio !== "success") $errores .= $tipoServicio . ". <br>";
+        if ($tipoServicio !== "success") $errores .= $id_user . ". <br>";
 
         return $errores; 
     }
@@ -99,7 +100,8 @@ class functionValidationsServices
     public function validationSession(){
         if(!isset($_SESSION)) session_start();
 
-           if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true){
+           if(empty($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true){
+
             header("Location: index.php?c=login&f=index");
             exit();
             }

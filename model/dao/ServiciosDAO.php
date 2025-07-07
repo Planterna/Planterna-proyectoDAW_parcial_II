@@ -9,24 +9,37 @@
         public function __construct() {
             $this->con = Conexion::getConexion();
         }
-        public function selectAll($parametro){
+        public function selectAll($parametro, $id_user){
         try{
-            $sql = "select * from registroservicio where (nombre LIKE :n1 or marcaVehiculo LIKE :b1 or placaVehiculo LIKE :b2)" ;
-            //prepare statement 
+            $sql = "select * from registroservicio where (nombre LIKE :n1 or marcaVehiculo LIKE :b1 or placaVehiculo LIKE :b2) AND  id_user=:id_user" ;
             $stmt = $this->con->prepare($sql);
-            $busqueda = "%".$parametro."%"; // para buscar considencias tanto al un inicio como al final
-            //enviar parametros a la sentencia 
+            $busqueda = "%".$parametro."%"; 
             $stmt->bindparam(":n1", $busqueda, PDO::PARAM_STR);
             $stmt->bindparam(":b1", $busqueda, PDO::PARAM_STR);
             $stmt->bindparam(":b2", $busqueda, PDO::PARAM_STR);
-            //ejecutamos la sentencia
+            $stmt->bindParam(":id_user", $id_user, PDO::PARAM_INT);
             $stmt->execute();
-            //recuperación (fetch) de resultados 
-            $res = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetchAll recupera todos los resultados retornandolos en el formato que especifiquemos
-            // FETCH_ASSOC: retorna cada registri(fila) de la tabla como un arreglo asociativo
-            // FECH_ALL: retorna todos los registros de la tabla como un arreglo asociativo
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $res;  
-         
+        }catch(PDOEXception $er){
+            error_log("Error en selectAll de ServiciosDAO ". $er->getMessage());
+            return null;
+        }
+
+     
+    }
+
+    public function selectAllAdTc($parametro){
+        try{
+            $sql = "select * from registroservicio where (nombre LIKE :n1 or marcaVehiculo LIKE :b1 or placaVehiculo LIKE :b2) AND estado NOT LIKE 'TERMINADO'";
+            $stmt = $this->con->prepare($sql);
+            $busqueda = "%".$parametro."%"; 
+            $stmt->bindparam(":n1", $busqueda, PDO::PARAM_STR);
+            $stmt->bindparam(":b1", $busqueda, PDO::PARAM_STR);
+            $stmt->bindparam(":b2", $busqueda, PDO::PARAM_STR);
+            $stmt->execute();
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            return $res;  
         }catch(PDOEXception $er){
             error_log("Error en selectAll de ServiciosDAO ". $er->getMessage());
             return null;
@@ -95,7 +108,8 @@
     public function insert($servicio){
         try{
            $sql="insert into registroServicio (nombre, cedula, telefono, correo, marcaVehiculo, placaVehiculo, tipoServicio
-           , fechaCreacion, id_user ) values (:nombre, :cedula, :telefono, :correo, :marcaVehiculo,:placaVehiculo, :tipoServicio ,:fecha, :id_user)";
+           , fechaCreacion, id_user ) values (:nombre, :cedula, :telefono, :correo, :marcaVehiculo,:placaVehiculo, :tipoServicio
+            ,:fecha, :id_user)";
           $stmt = $this->con->prepare($sql);
           $stmt->bindParam(":nombre",$servicio->getNombre(), PDO::PARAM_STR);
           $stmt->bindParam(":cedula",$servicio->getCedula(), PDO::PARAM_STR);
@@ -142,8 +156,6 @@
 
     public function updateTec($servicio){
          try{
-        //    $sql="update registroServicio set fechaModificacion=:fechaMod, id_tecnico=:id_tec,tipoServicio=:typeSer
-        //    , estado=:estado where id_Registro=:id";
         $sql="update registroServicio set fechaModificacion=:fechaMod, tipoServicio=:typeSer, estado=:estado, id_tecnico=:id_tecnico where id_Registro=:id";
           $stmt = $this->con->prepare($sql);
           $stmt->bindParam(":typeSer",$servicio->getTipoServicio(), PDO::PARAM_STR);

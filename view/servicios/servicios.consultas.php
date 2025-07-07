@@ -100,7 +100,8 @@
                         <td>
                             <form action="index.php?c=servicios&f=changeService" method="POST">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($servicio['id_Registro']); ?>">
-                                <select id="tipoServicio_<?php echo htmlspecialchars($servicio['id_Registro']); ?>" name="tipoServicio" class="form-control">
+                                <input type="hidden" name="id_tecnico" id="id_tecnico" value="<?php echo htmlspecialchars($id_tecnico) ?>" />
+                                <select id="tipoServicio" name="tipoServicio" class="form-control">
                                     <?php
                                     $typeService = ["MANTENIMIENTO PREVENTIVO", "REPARACIONES", "SERVICIO TECNICO"];
                                     foreach ($typeService as $type) {
@@ -115,7 +116,7 @@
                                 </select>
                         </td>
                         <td>
-                            <select id="estado_<?php echo htmlspecialchars($servicio['id_Registro']); ?>" name="estado" class="form-control">
+                            <select id="estado" name="estado" class="form-control">
                                 <?php
                                 $typeStatus = ["EN ESPERA", "EN PROCESO", "TRABAJANDO", "TERMINADO"];
                                 foreach ($typeStatus as $type) {
