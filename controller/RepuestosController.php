@@ -2,8 +2,7 @@
 require_once 'model/dao/RepuestosDAO.php';
 require_once 'model/dao/MarcaDAO.php';
 require_once 'model/dao/ModeloDAO.php';
-require_once 'model/dto/RepuestoDTO.php';
-require_once 'util/functions.php';
+require_once 'util/funcionRepuestos.php';
 
 class RepuestosController
 {
