@@ -69,5 +69,37 @@ class UsuariosDAO {
             return false;
         }
     }
+
+    public function obtenerTodos($rol = null, $search = '')
+    {
+        $sql = "SELECT * FROM usuarios WHERE 1=1";
+        $params = [];
+
+
+        if ($rol !== null && $rol !== '') {
+            $sql .= " AND rol = :rol";
+            $params[':rol'] = $rol;
+        }
+
+        if ($search !== '') {
+            $sql .= " AND (nombre LIKE :s OR cedula LIKE :s)";
+            $params[':s'] = '%'.$search.'%';
+        }
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function cambiarEstado($id, $nuevoEstado) {
+        $sql = "UPDATE usuarios SET estado = :estado WHERE id_user = :id_user";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindValue(":estado", $nuevoEstado, PDO::PARAM_INT);
+        $stmt->bindValue(":id_user", $id,     PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    
+
 }
 ?>

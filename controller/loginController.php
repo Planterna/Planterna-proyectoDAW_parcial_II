@@ -14,8 +14,8 @@ class LoginController
 
     public function __construct()
     {
-        $this->model = new UsuariosDAO();
-        $this->util = new functionValidationsUser(); 
+        $this->model   = new UsuariosDAO();
+        $this->util    = new functionValidationsUser();
         $this->message = new FunctionUtil();
     }
 
@@ -31,48 +31,57 @@ class LoginController
 
     public function dashboard()
     {
-    session_start();
-
-    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
-        header("Location: index.php?c=login&f=index");
-        exit();
-    }
-    
-    require_once VLOGIN . 'dashboard.php';
+        session_start();
+        if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+            header("Location: index.php?c=login&f=index");
+            exit();
+        }
+        require_once VLOGIN . 'dashboard.php';
     }
 
+    public function dashboardAdmin()
+    {
+        session_start();
+        if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+            header("Location: index.php?c=login&f=index");
+            exit();
+        }
+        require_once VLOGIN . 'dashboardAdmin.php';
+    }
 
     public function registrar()
     {
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $isAdmin = isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true && $_SESSION['rol'] == 3;
+
+
         $nombre = $_POST['nombre'] ?? '';
         $cedula = $_POST['cedula'] ?? '';
         $correo = $_POST['correo'] ?? '';
         $telefono = $_POST['telefono'] ?? '';
         $password = $_POST['password'] ?? '';
         $confirmar_password = $_POST['confirmar_password'] ?? '';
-        $notificaciones = isset($_POST['notificaciones']) ? 1 : 0; 
+        $notificaciones = isset($_POST['notificaciones']) ? 1 : 0;
+        $rol = $_POST['rol'] ?? 1;
+        $estado = 1;
 
-        $rol = 1; 
-        $estado = 1; 
 
-        $v_nombre = $this->util->validateName($nombre);
-        $v_cedula = $this->util->validateCedula($cedula); 
-        $v_correo = $this->util->validateEmail($correo);
-        $v_telefono = $this->util->validateTelefono($telefono); 
-        $v_password = $this->util->validatePassword($password);
+        $errores = $this->util->addError(
+            $this->util->validateName($nombre),
+            $this->util->validateCedula($cedula),
+            $this->util->validateEmail($correo),
+            $this->util->validateTelefono($telefono),
+            $this->util->validatePassword($password)
+        );
 
-        $errores_list = [];
-
-        if ($v_nombre !== "success") $errores_list[] = $v_nombre;
-        if ($v_cedula !== "success") $errores_list[] = $v_cedula;
-        if ($v_correo !== "success") $errores_list[] = $v_correo;
-        if ($v_telefono !== "success") $errores_list[] = $v_telefono;
-        if ($v_password !== "success") $errores_list[] = $v_password;
+        $errores_list = ($errores === "No hay errores.") ? [] : explode("<br>", str_replace(["Errores: <br>", ". "], "", $errores));
 
         if ($password !== $confirmar_password) {
             $errores_list[] = "Las contraseñas no coinciden.";
         }
-
         if ($this->model->buscarPorCedula($cedula)) {
             $errores_list[] = "La cédula ya está registrada.";
         }
@@ -80,37 +89,49 @@ class LoginController
             $errores_list[] = "El correo electrónico ya está registrado.";
         }
 
+
         if (!empty($errores_list)) {
-            $this->message->redirectWithMessage(false, "", "Error en los datos: <br>" . implode("<br>", $errores_list), "index.php?c=login&f=registro");
+            $urlError = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
+                                 : "index.php?c=login&f=registro";
+            $this->message->redirectWithMessage(
+                false,
+                "",
+                "Error en los datos:<br>" . implode("<br>", $errores_list),
+                $urlError
+            );
             exit;
         }
+
 
         $usuarioObj = new Usuario();
         $usuarioObj->setNombre(htmlentities($nombre));
         $usuarioObj->setCedula(htmlentities($cedula));
         $usuarioObj->setCorreo(htmlentities($correo));
         $usuarioObj->setTelefono(htmlentities($telefono));
-        $usuarioObj->setPassword(password_hash($password, PASSWORD_BCRYPT)); 
-        $usuarioObj->setRol($rol); 
-        $usuarioObj->setEstado($estado); 
+        $usuarioObj->setPassword(password_hash($password, PASSWORD_BCRYPT));
+        $usuarioObj->setRol($rol);
+        $usuarioObj->setEstado($estado);
         $usuarioObj->setRecibirInfo($notificaciones);
 
         $exito = $this->model->insert($usuarioObj);
 
-        $this->message->redirectWithMessage(
-            $exito,
-            "¡Registro exitoso! Ya puedes iniciar sesión.",
-            "Error al registrar usuario. Inténtalo de nuevo.",
-            "index.php?c=login&f=index"
-        );
+
+        if ($exito) {
+            $urlOk = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
+                              : $this->urlDashboardPorRol($rol);
+            $this->message->redirectWithMessage(true, "¡Usuario registrado exitosamente!", "", $urlOk);
+        } else {
+            $urlFail = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
+                                : "index.php?c=login&f=registro";
+            $this->message->redirectWithMessage(false, "", "Error al registrar usuario. Inténtalo de nuevo.", $urlFail);
+        }
     }
 
     public function validar()
     {
         $input_usuario = $_POST['usuario'] ?? '';
-        $input_clave = $_POST['clave'] ?? '';
-
-        $usuario_data = null;
+        $input_clave   = $_POST['clave'] ?? '';
+        $usuario_data  = null;
 
         $esCedulaValida = $this->util->validateCedula($input_usuario);
         if ($esCedulaValida === "success") {
@@ -133,22 +154,78 @@ class LoginController
 
             setcookie("usuario", $_SESSION['nombre'], time() + (86400 * 30), "/");
 
-            $this->message->redirectWithMessage(true, "¡Bienvenido " . $_SESSION['nombre'] . "!", "", "index.php?c=login&f=dashboard");
+            $this->message->redirectWithMessage(
+                true,
+                "¡Bienvenido " . $_SESSION['nombre'] . "!",
+                "",
+                "index.php?c=login&f=dashboard"
+            );
         } else {
-            $this->message->redirectWithMessage(false, "", "Credenciales incorrectas. Verifique su usuario/correo y contraseña.", "index.php?c=login&f=index");
+            $this->message->redirectWithMessage(
+                false,
+                "",
+                "Credenciales incorrectas. Verifique su usuario/correo y contraseña.",
+                "index.php?c=login&f=index"
+            );
         }
     }
+
+    public function listarUsuarios()
+    {
+        $this->checkSession();
+        if ($_SESSION['rol'] != 3) {
+            header("Location: index.php?c=login&f=index");
+            exit();
+        }
+
+        $rolFiltro  = $_POST['rolFiltro']  ?? '';
+        $textoBuscar = trim($_POST['q'] ?? '');   
+
+        $usuarios = $this->model->obtenerTodos($rolFiltro, $textoBuscar);
+
+
+        $this->rolFiltro  = $rolFiltro;
+        $this->textoBuscar = $textoBuscar;
+        require_once VLOGIN . 'ListarUsuarios.php';
+    }
+
+
+    public function cambiarEstadoUsuario()
+    {
+        $this->checkSession();
+        if ($_SESSION['rol'] != 3) exit();
+
+        $id     = (int)($_POST['id']     ?? 0);
+        $estado = (int)($_POST['estado'] ?? 0);
+
+        $this->model->cambiarEstado($id, $estado);
+        header("Location: index.php?c=login&f=listarUsuarios");
+    }
+
+    private function checkSession()
+    {
+        if (session_status() === PHP_SESSION_NONE) session_start();
+        if (empty($_SESSION['loggedIn'])) {
+            header("Location: index.php?c=login&f=index");
+            exit();
+        }
+    }
+
+
+
 
     public function logout()
     {
         session_start();
         session_destroy();
-        setcookie("usuario", "", time() - 3600, "/"); 
+        setcookie("usuario", "", time() - 3600, "/");
         header("Location: index.php?c=login&f=index");
         exit();
     }
+
+    // Puedes agregar aquí la función urlDashboardPorRol si no existe
+    // private function urlDashboardPorRol($rol) { ... }
 }
-?>
 
 
 
