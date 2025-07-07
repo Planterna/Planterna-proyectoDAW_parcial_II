@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+=======
+/* principal index */
+
+>>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+<<<<<<< HEAD
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #000;
 }
@@ -335,3 +341,283 @@ table td, table th {
   background-color: #2e6bb2;
 }
 
+=======
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.contenedor_principal { 
+    height: 90vh;
+    background-image: url("https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Promotional-Carousel-Model-3-Desktop-US.png");
+    background-size: cover;
+    background-position: center;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    text-align: center;
+}
+  
+.contenedor_fondo {
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 2rem; 
+    border-radius: 1rem;
+}
+
+.contenedor_principal h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contenedor_principal p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.buttons a {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #3e6ae1;
+    border: 1px solid #aaa;
+    color: white;
+    margin-right: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #2f58c5;
+}
+
+.btn-secondary {
+    background-color: white;
+    border: 1px solid #aaa;
+    color: #000000;
+}
+
+.btn-secondary:hover {
+    background-color: #eee;
+}
+
+.seccion {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.seccion h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+.seccion p, .seccion ul {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.seccion ul {
+    list-style: none;
+    padding: 0;
+}
+
+.seccion ul li {
+    margin: 10px 0;
+}
+
+.seccion.gris {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.contenedor-deslizante {
+    position: relative;
+    overflow: hidden;
+    width: 810px; 
+    margin: 0 auto;
+}
+
+.Deslizante {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.oferta {
+    min-width: 250px;
+    max-width: 250px;
+    margin: 0 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.oferta img {
+    width: 100%;
+    border-radius: 10px;
+    max-height: 140px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.Deslizante-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+.Deslizante-btn.left {
+    left: 5px;
+}
+
+.Deslizante-btn.right {
+    right: 5px;
+}
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+.titulos_h2 {
+    
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+
+
+/* Para modulo servicios */
+.carousel-item img {
+    height: 400px; 
+    object-fit: contain;
+    border-radius: 10px;
+}  
+#form-section {
+  /* padding: 40px 20px;  */
+  max-width: 800px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+}
+
+.contenedor_solicitud {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.contenedor_solicitud h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.contenedor_solicitud p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 600px; 
+  text-align: center;
+}
+
+.contenedor_formulario {
+  width: 100%; 
+  max-width: 500px; 
+}
+
+.formulario {
+  text-align: left; 
+  padding: 30px;
+  border: 1px solid #ddd;
+  margin-top:10px;
+  margin-bottom:10px; 
+  border-radius: 8px;
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+}
+
+.formulario label {
+  display: block; 
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333; 
+  font-size: 1rem;
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"] { 
+  width: calc(100% - 16px);
+  padding: 12px;
+  margin-bottom: 20px; 
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0; 
+  color: #333;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.formulario input[type="text"]:focus,
+.formulario input[type="email"]:focus {
+  border-color: #007bff; 
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  outline: none; 
+}
+
+
+.formulario .enviar {
+  background-color: #28a745; 
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 100%; 
+  max-width: 250px;
+  display: block;
+  margin: 20px auto 0 auto; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.formulario .enviar:hover {
+  background-color: #218838; 
+  transform: translateY(-2px); 
+}
+
+
+/* Para modulo productos */
+
+
+/* Para modulo login */
+
+
+
+/* Para modulo cotizaciones */
+>>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
