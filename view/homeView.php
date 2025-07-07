@@ -4,13 +4,8 @@
       <h1>Servicio Automotriz Profesional</h1>
       <p>Calidad, tecnología y confianza. Accede a los beneficios que ofrecemos</p>
       <div class="buttons">
-<<<<<<< HEAD
-        <a href="acceder.html" class="btn-primary">Accede ya</a>
-        <a href="#ofrecemos" class="btn-secondary">Que ofrecemos</a>
-=======
         <a href="index.php?c=login&f=index" class="btn btn-primary me-3">Accede ya</a>
         <a href="#ofrecemos" class="btn btn-outline-secondary">¿Qué ofrecemos?</a>
->>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
       </div>
     </div> 
   </main>
@@ -35,11 +30,7 @@
     <button class="Deslizante-btn left" onclick="moverDeslizante(-1)">&#10094;</button>
 
     <div class="Deslizante" id="Deslizante">
-<<<<<<< HEAD
-      <a href="servicios/servicios_reparaciones.html" class="oferta" style="text-decoration: none; color: inherit;">
-=======
       <a href="index.php?c=Servicios&f=index" class="oferta" style="text-decoration: none; color: inherit;">
->>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
         <img src="https://www.jacsautocare.com/images/taller-de-mecanica-general-en-guayaquil.jpg" alt="Reparaciones mecanicas" />
         <h3>Reparaciones mecánicas</h3>
         <p>Diagnóstico y solución de problemas del motor, suspensión y frenos.</p>
