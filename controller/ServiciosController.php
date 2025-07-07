@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+<?php
+    require_once 'model/dao/ServiciosDAO.php';
+    class ServiciosController {
+
+        private $model;
+
+        public function __construct() {
+            $this->model = new ServiciosDAO();
+        }
+
+        public function index() {
+            require_once VSERVICIOS.'formulario.php';
+        }
+
+    }
+
+
+?>
+=======
     <!--autor: Jonathan Alejandro Baquerizo-->
 
     <?php
@@ -204,3 +224,4 @@
 
 
     ?>
+>>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc

@@ -1,4 +1,47 @@
 <?php
+<<<<<<< HEAD
+  function redirectWithMessage($exito, $exitoMsg, $errMsg, $redirectUrl){
+        if(!isset($_SESSION)) session_start();
+        $_SESSION['mensaje']= ($exito)?$exitoMsg:$errMsg;
+        $_SESSION['color']= ($exito)?'primary':'danger';
+
+       header("Location: $redirectUrl");
+    }
+
+
+function validarNombre($nombre){
+    $nombre = trim($nombre);
+    return preg_match('/^[\p{L}\p{N} \-áéíóúÁÉÍÓÚñÑ]{3,100}$/u', $nombre) === 1;
+}
+
+function validarDescripcion($descripcion){
+    $descripcion = trim($descripcion);
+    return preg_match('/^[\p{L}\p{N} .,;:!¡¿?\'"()\-]{1,255}$/u', $descripcion) === 1;
+}
+
+function validarPrecio($precio){
+    if (!preg_match('/^\d+(\.\d{1,2})?$/', $precio)) return false;
+    return floatval($precio) > 0;
+}
+
+function validarStock($stock){
+    return ctype_digit($stock) && intval($stock) >= 0;
+}
+
+function validarMarca($marca){
+    return ctype_digit($marca) && intval($marca) > 0;
+}
+
+function validarModelo($modelo){
+    return ctype_digit($modelo) && intval($modelo) > 0;
+}
+
+function validarTipoRepuesto($tipoRepuesto){
+    $tiposValidos = ['Original', 'Generico', 'Reacondicionado'];
+    return in_array($tipoRepuesto, $tiposValidos, true);
+}
+
+=======
   
   class functionUtil{
 
@@ -19,4 +62,5 @@
     }
 
   }
+>>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
 ?>

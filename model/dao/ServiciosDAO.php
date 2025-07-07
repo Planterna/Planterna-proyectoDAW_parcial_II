@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+=======
 <!--autor: Jonathan Alejandro Baquerizo-->
 
+>>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
 <?php
     require_once 'config/Conexion.php';
     class ServiciosDAO {
@@ -9,6 +12,9 @@
         public function __construct() {
             $this->con = Conexion::getConexion();
         }
+<<<<<<< HEAD
+
+=======
         public function selectAll($parametro){
         try{
             $sql = "select * from registroservicio where (nombre LIKE :n1 or marcaVehiculo LIKE :b1 or placaVehiculo LIKE :b2)" ;
@@ -173,6 +179,7 @@
             return false;
             }
         }
+>>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
     }
 
 
