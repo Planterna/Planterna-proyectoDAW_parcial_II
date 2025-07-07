@@ -11,7 +11,7 @@ class ServiciosDAO {
         }
         public function selectAll($parametro, $id_user){
         try{
-            $sql = "select * from registroservicio where (nombre LIKE :n1 or marcaVehiculo LIKE :b1 or placaVehiculo LIKE :b2) AND  id_user=:id_user" ;
+            $sql = "select * from registroservicio where (nombre LIKE :n1 or marcaVehiculo LIKE :b1 or placaVehiculo LIKE :b2) AND  id_user=:id_user AND statusLogical=1" ;
             $stmt = $this->con->prepare($sql);
             $busqueda = "%".$parametro."%"; 
             $stmt->bindparam(":n1", $busqueda, PDO::PARAM_STR);
