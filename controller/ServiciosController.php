@@ -22,33 +22,34 @@
 
         public function index()
         {
-            $rol = $this->util->validationRole();
+            if (!isset($_SESSION)) session_start();
+
+            $rol = !empty($_SESSION['loggedIn']) ? ($_SESSION['rol'] ?? 0) : 0;
+
             require_once VSERVICIOS . 'informacion.php';
-            
         }
+
 
 
         public function formInit()
         {
-            $res = $this->util->validationSession();
-            if ($res) {
+            if ($this->util->validationSession()) {
+                $id_user = $this->util->validationId();
                 $rol = $_SESSION['rol'];
-                // $rol = $this->model->searchRol();
                 if ($rol == 1 || $rol == 3) {
                     require_once VSERVICIOS . 'formulario.php';
-                } else {
-                    require_once VSERVICIOS .  'informacion.php';
                 }
             }
         }
 
         public function formSearch()
         {
-            $rol = 1;
-            // $rol = $this->model->searchRol();
+            $this->util->validationSession();
+            $rol = $this->util->validationRole();
+            $id = $this->util->validationId();
 
             if ($rol == 1) {
-                $resultados = $this->model->selectAllforId("3");
+                $resultados = $this->model->selectAllforId($id);
             } elseif ($rol == 2 || $rol == 3) {
                 $resultados = $this->model->selectAllItems();
             }
@@ -75,6 +76,8 @@
             $marcaVehiculo = $this->util->validateName($_POST['marcaVehiculo']);
             $placaVehiculo = $this->util->validatePlaca($_POST['placaVehiculo']);
             $tipoServicio = $this->util->validBasic($_POST['tipoServicio'], "tipo de Servicio");
+            
+
             $errores = $this->util->addError($name, $cedula, $telefono, $correo, $placaVehiculo, $marcaVehiculo, $tipoServicio);
 
             $result = ($name == "success" && $cedula == "success" &&
@@ -85,7 +88,7 @@
             //leer los parametros del formulario
             $serv = $this->populate();
             //guardar (llamando al modelo)
-            $test = $result ? $this->model->update($serv) : false;
+            $test = $result ? $this->model->insert($serv) : false;
 
             $this->message->redirectWithMessage($test, "servicio editado exitosamente", "No se pudo editar el servicio, " . $errores, "index.php?c=servicios&f=formInit");
         }
@@ -93,6 +96,8 @@
 
         public function search()
         {
+            $this->util->validationSession();
+            $rol = $this->util->validationRole();
             //leer los parametros enviados en las peticiones
             $parametro = htmlentities($_POST['b']); //falta verificar
             //comunicacion con el modelo para (obtener datos) traer la lista de todos los servicios

@@ -20,7 +20,7 @@ require_once HEADER;
                     <div class="card-body">
                         <h5 class="card-title">Mis reparaciones</h5>
                         <p class="card-text">Consulta tus servicios activos.</p>
-                        <a href="index.php?c=servicios&f=listar" class="btn btn-outline-primary">Ver</a>
+                        <a href="index.php?c=servicios&f=formSearch" class="btn btn-outline-primary">Ver</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@ require_once HEADER;
                     <div class="card-body">
                         <h5 class="card-title">Reparaciones asignadas</h5>
                         <p class="card-text">Lista de servicios por atender.</p>
-                        <a href="index.php?c=servicios&f=asignadas" class="btn btn-outline-warning">Ver asignaciones</a>
+                        <a href="index.php?c=servicios&f=formSearch" class="btn btn-outline-warning">Ver asignaciones</a>
                     </div>
                 </div>
             </div>

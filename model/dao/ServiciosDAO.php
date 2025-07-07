@@ -95,7 +95,7 @@
     public function insert($servicio){
         try{
            $sql="insert into registroServicio (nombre, cedula, telefono, correo, marcaVehiculo, placaVehiculo, tipoServicio
-           , fechaCreacion ) values (:nombre, :cedula, :telefono, :correo, :marcaVehiculo,:placaVehiculo, :tipoServicio ,:fecha)";
+           , fechaCreacion, id_user ) values (:nombre, :cedula, :telefono, :correo, :marcaVehiculo,:placaVehiculo, :tipoServicio ,:fecha, :id_user)";
           $stmt = $this->con->prepare($sql);
           $stmt->bindParam(":nombre",$servicio->getNombre(), PDO::PARAM_STR);
           $stmt->bindParam(":cedula",$servicio->getCedula(), PDO::PARAM_STR);
@@ -104,6 +104,7 @@
           $stmt->bindParam(":marcaVehiculo",$servicio->getmarcaVehiculo(), PDO::PARAM_STR);
           $stmt->bindParam(":placaVehiculo",$servicio->getplacaVehiculo(), PDO::PARAM_STR);
           $stmt->bindParam(":tipoServicio",$servicio->getTipoServicio(), PDO::PARAM_STR);
+          $stmt->bindParam(":id_user",$servicio->getId_user(), PDO::PARAM_INT);
           $stmt->bindParam(":fecha",$servicio->getfechaCreacion(), PDO::PARAM_STR);
 
 
@@ -119,7 +120,7 @@
          try{
            $sql="update registroServicio set nombre=:nombre, cedula=:cedula, telefono=:telefono, correo=:correo, 
            marcaVehiculo=:marcaVehiculo, placaVehiculo=:placaVehiculo, 
-           fechaModificacion=:fechaMod where id_Registro=:id";
+           fechaModificacion=:fechaMod, id_user=:id_user where id_Registro=:id";
           $stmt = $this->con->prepare($sql);
           $stmt->bindParam(":nombre",$servicio->getNombre(), PDO::PARAM_STR);
           $stmt->bindParam(":cedula",$servicio->getCedula(), PDO::PARAM_STR);
@@ -129,6 +130,7 @@
           $stmt->bindParam(":placaVehiculo",$servicio->getplacaVehiculo(), PDO::PARAM_STR);
           $stmt->bindParam(":fechaMod",$servicio->getfechaModificacion(), PDO::PARAM_STR);
           $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
+          $stmt->bindParam(":id_user",$servicio->getId_user(), PDO::PARAM_INT);
 
          $res= $stmt->execute(); // execute retorna true si tuvo exito la ejecucion, false en caso contrario
          return $res;
@@ -142,11 +144,11 @@
          try{
         //    $sql="update registroServicio set fechaModificacion=:fechaMod, id_tecnico=:id_tec,tipoServicio=:typeSer
         //    , estado=:estado where id_Registro=:id";
-        $sql="update registroServicio set fechaModificacion=:fechaMod, tipoServicio=:typeSer, estado=:estado where id_Registro=:id";
+        $sql="update registroServicio set fechaModificacion=:fechaMod, tipoServicio=:typeSer, estado=:estado, id_tecnico=:id_tecnico where id_Registro=:id";
           $stmt = $this->con->prepare($sql);
           $stmt->bindParam(":typeSer",$servicio->getTipoServicio(), PDO::PARAM_STR);
           $stmt->bindParam(":estado",$servicio->getEstado(), PDO::PARAM_STR);
-         // $stmt->bindParam(":id_tec",$servicio->getId_tecnico(), PDO::PARAM_STR);
+        $stmt->bindParam(":id_tecnico",$servicio->getId_tecnico(), PDO::PARAM_INT);
           $stmt->bindParam(":fechaMod",$servicio->getfechaModificacion(), PDO::PARAM_STR);
           $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
 
