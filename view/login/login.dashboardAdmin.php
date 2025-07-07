@@ -13,13 +13,13 @@ require_once SLIDERBAR;
 
 <main class="container pt-4 ml-sidebar">
     <h2 class="fw-semibold mb-4 text-center text-uppercase">
-        <?php echo empty($usuario) ? "Usuarios" : "Editar usuario"; ?>
+        <?php echo empty($usuario) ? "Agregar usuario" : "Editar usuario"; ?>
     </h2>
 
     <div class="row justify-content-center">
         <div class="col-12 col-md-9 col-lg-8">
             <form class="row g-4" method="POST" 
-                action="index.php?c=login&f=<?php echo empty($usuario) ? 'dashboardAdmin' : 'actualizarUsuario'; ?>">
+                action="index.php?c=login&f=<?php echo empty($usuario) ? 'registrar' : 'actualizarUsuario'; ?>">
 
                 <?php if (!empty($usuario)) { ?>
                     <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($usuario->getIdUser()); ?>">
