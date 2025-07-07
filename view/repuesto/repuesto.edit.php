@@ -14,13 +14,17 @@
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control" value="<?= $datosFormulario['nombre'] ?>">
-          <small class="error-message" id="error-nombre"></small>
+          <small class="error-message" id="error-nombre">
+            <?= $errores['nombre'] ?? '' ?>
+          </small>
         </div>
 
         <div class="form-group">
           <label for="descripcion">Descripción</label>
           <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?= $datosFormulario['descripcion'] ?>">
-          <small class="error-message" id="error-descripcion"></small>
+          <small class="error-message" id="error-descripcion">
+            <?= $errores['descripcion'] ?? '' ?>
+          </small>
         </div>
       </div>
 
@@ -28,13 +32,17 @@
         <div class="form-group">
           <label for="precio">Precio</label>
           <input type="text" name="precio" id="precio" class="form-control" value="<?= $datosFormulario['precio'] ?>">
-          <small class="error-message" id="error-precio"></small>
+          <small class="error-message" id="error-precio">
+            <?= $errores['precio'] ?? '' ?>
+          </small>
         </div>
 
         <div class="form-group">
           <label for="stock">Stock</label>
           <input type="text" name="stock" id="stock" class="form-control" value="<?= $datosFormulario['stock'] ?>">
-          <small class="error-message" id="error-stock"></small>
+          <small class="error-message" id="error-stock">
+            <?= $errores['stock'] ?? '' ?>
+          </small>
         </div>
       </div>
 
@@ -49,7 +57,9 @@
               </option>
             <?php endforeach; ?>
           </select>
-          <small class="error-message" id="error-marca"></small>
+          <small class="error-message" id="error-marca">
+            <?= $errores['marca'] ?? ''?>
+          </small>
         </div>
 
         <div class="form-group">
@@ -64,7 +74,9 @@
               <?php endforeach; ?>
             <?php endif; ?>
           </select>
-          <small class="error-message" id="error-modelo"></small>
+          <small class="error-message" id="error-modelo">
+            <?= $errores['modelo'] ?? ''?>
+          </small>
         </div>
       </div>
 
@@ -81,7 +93,9 @@
             <input type="radio" name="tipoRepuesto" value="Reacondicionado" <?= ($datosFormulario['tipoRepuesto'] == 'Reacondicionado') ? 'checked' : '' ?>> Reacondicionado
           </label>
         </div>
-        <small class="error-message" id="error-tipoRepuesto"></small>
+        <small class="error-message" id="error-tipoRepuesto">
+          <?= $errores['tipoRepuesto'] ?? ''?>
+        </small>
       </fieldset>
 
       <fieldset class="fieldset-radio">
@@ -99,4 +113,5 @@
     </form>
   </section>
 </main>
+<script src="assets/js/script.js"></script>
 </body>
