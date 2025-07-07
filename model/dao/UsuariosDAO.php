@@ -91,6 +91,49 @@ class UsuariosDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Buscar usuario por ID
+    public function buscarPorId($id) {
+        $sql = "SELECT id_user, nombre, cedula, correo, telefono, password, rol, estado, notificaciones, fecha_creacion 
+                FROM usuarios WHERE id_user = :id_user LIMIT 1";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindValue(":id_user", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Actualizar usuario
+    public function actualizar($usuario) {
+        $sql = "UPDATE usuarios SET
+                    nombre = :nombre,
+                    cedula = :cedula,
+                    correo = :correo,
+                    telefono = :telefono,
+                    password = :password,
+                    rol = :rol,
+                    estado = :estado,
+                    notificaciones = :notificaciones
+                WHERE id_user = :id_user";
+
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindValue(":nombre", $usuario->getNombre());
+        $stmt->bindValue(":cedula", $usuario->getCedula());
+        $stmt->bindValue(":correo", $usuario->getCorreo());
+        $stmt->bindValue(":telefono", $usuario->getTelefono());
+        $stmt->bindValue(":password", $usuario->getPassword());
+        $stmt->bindValue(":rol", $usuario->getRol());
+        $stmt->bindValue(":estado", $usuario->getEstado());
+        $stmt->bindValue(":notificaciones", $usuario->getRecibirInfo());
+        $stmt->bindValue(":id_user", $usuario->getIdUser(), PDO::PARAM_INT);
+
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Error en UsuariosDAO::actualizar: " . $e->getMessage());
+            return false;
+        }
+    }
+
+
 
     public function cambiarEstado($id, $nuevoEstado) {
         $sql = "UPDATE usuarios SET estado = :estado WHERE id_user = :id_user";

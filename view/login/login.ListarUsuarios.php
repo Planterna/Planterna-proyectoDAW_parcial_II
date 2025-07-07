@@ -76,8 +76,10 @@ require_once HEADER;
 
                     <td class="d-flex gap-1">
                         <!-- Editar -->
-                        <a href="index.php?c=login&f=editarUsuario&id=<?= $u['id_user'] ?>"
-                           class="btn btn-sm btn-primary">Editar</a>
+                        <a href="index.php?c=login&f=editarUsuario&id=<?= $u['id_user'] ?>" class="btn btn-sm btn-primary">
+                            Editar
+                        </a>
+
 
                         <!-- Activar / Desactivar -->
                         <form method="POST" action="index.php?c=login&f=cambiarEstadoUsuario"
