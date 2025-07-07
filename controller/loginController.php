@@ -90,7 +90,7 @@ class LoginController
 
         if (!empty($errores_list)) {
             $urlError = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
-                                 : "index.php?c=login&f=registro";
+                : "index.php?c=login&f=registro";
             $this->message->redirectWithMessage(
                 false,
                 "",
@@ -114,11 +114,11 @@ class LoginController
 
         if ($exito) {
             $urlOk = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
-                              : $this->urlDashboardPorRol($rol);
+                : $this->urlDashboardPorRol($rol);
             $this->message->redirectWithMessage(true, "¡Usuario registrado exitosamente!", "", $urlOk);
         } else {
             $urlFail = $isAdmin ? "index.php?c=login&f=dashboardAdmin"
-                                : "index.php?c=login&f=index";
+                : "index.php?c=login&f=index";
             $this->message->redirectWithMessage(false, "", "Error al registrar usuario. Inténtalo de nuevo.", $urlFail);
         }
     }
@@ -177,13 +177,12 @@ class LoginController
         }
 
         $rolFiltro  = $_POST['rolFiltro']  ?? '';
-        $textoBuscar = trim($_POST['q'] ?? '');   
+        $textoBuscar = trim($_POST['q'] ?? '');
 
         $usuarios = $this->model->obtenerTodos($rolFiltro, $textoBuscar);
 
-        $this->rolFiltro  = $rolFiltro;
-        $this->textoBuscar = $textoBuscar;
-        require_once VLOGIN . 'ListarUsuarios.php';
+        // Pasar variables a la vista
+        require VLOGIN . 'ListarUsuarios.php';
     }
 
     // Cambiar estado usuario (solo admin)
@@ -216,8 +215,12 @@ class LoginController
 
         $data = $this->model->buscarPorId($id);
         if (!$data) {
-            $this->message->redirectWithMessage(false,"","Usuario no encontrado.",
-                                                "index.php?c=login&f=listarUsuarios");
+            $this->message->redirectWithMessage(
+                false,
+                "",
+                "Usuario no encontrado.",
+                "index.php?c=login&f=listarUsuarios"
+            );
             exit();
         }
 
@@ -238,11 +241,14 @@ class LoginController
     public function actualizarUsuario()
     {
         $this->checkSession();
-        if ($_SESSION['rol'] != 3) { header("Location: index.php?c=login&f=index"); exit(); }
+        if ($_SESSION['rol'] != 3) {
+            header("Location: index.php?c=login&f=index");
+            exit();
+        }
 
         $id = (int)($_POST['id_user'] ?? 0);
         if ($id <= 0) {
-            $this->message->redirectWithMessage(false,"","ID inválido.","index.php?c=login&f=listarUsuarios");
+            $this->message->redirectWithMessage(false, "", "ID inválido.", "index.php?c=login&f=listarUsuarios");
             exit();
         }
 
@@ -261,8 +267,8 @@ class LoginController
             $this->util->validateEmail($correo),
             $this->util->validateTelefono($telefono)
         );
-        $list = ($errores==="No hay errores.") ? [] :
-                explode("<br>", str_replace(["Errores: <br>",". "], "", $errores));
+        $list = ($errores === "No hay errores.") ? [] :
+            explode("<br>", str_replace(["Errores: <br>", ". "], "", $errores));
 
         if ($password !== '') {
             $passOk = $this->util->validatePassword($password);
@@ -277,8 +283,12 @@ class LoginController
         if ($exCor && $exCor['id_user'] != $id) $list[] = "El correo ya está registrado por otro usuario.";
 
         if ($list) {
-            $this->message->redirectWithMessage(false,"","Errores:<br>".implode("<br>",$list),
-                                                "index.php?c=login&f=editarUsuario&id=$id");
+            $this->message->redirectWithMessage(
+                false,
+                "",
+                "Errores:<br>" . implode("<br>", $list),
+                "index.php?c=login&f=editarUsuario&id=$id"
+            );
             exit();
         }
 
@@ -293,7 +303,7 @@ class LoginController
         $u->setRecibirInfo($notif);
 
         if ($password !== '') {
-            $u->setPassword(password_hash($password,PASSWORD_BCRYPT));
+            $u->setPassword(password_hash($password, PASSWORD_BCRYPT));
         } else {
             $actual = $this->model->buscarPorId($id);
             $u->setPassword($actual['password']);
@@ -302,8 +312,8 @@ class LoginController
         $ok = $this->model->actualizar($u);
 
         $msgUrl = "index.php?c=login&f=listarUsuarios";
-        if ($ok)  $this->message->redirectWithMessage(true,"¡Usuario actualizado!","",$msgUrl);
-        else      $this->message->redirectWithMessage(false,"","Error al actualizar.",$msgUrl);
+        if ($ok)  $this->message->redirectWithMessage(true, "¡Usuario actualizado!", "", $msgUrl);
+        else      $this->message->redirectWithMessage(false, "", "Error al actualizar.", $msgUrl);
     }
 
     // Logout
@@ -326,7 +336,8 @@ class LoginController
         }
     }
 
-    private function urlDashboardPorRol($rol) {
+    private function urlDashboardPorRol($rol)
+    {
         switch ($rol) {
             case 3:
                 return "index.php?c=login&f=dashboardAdmin";
@@ -335,8 +346,3 @@ class LoginController
         }
     }
 }
-
-
-
-
-

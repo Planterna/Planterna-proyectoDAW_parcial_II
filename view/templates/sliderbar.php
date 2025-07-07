@@ -1,3 +1,4 @@
+
 <!-- Sidebar fijo (izquierdo) -->
 <nav class="position-fixed bg-light vh-100 shadow-sm pt-4 px-3"
     style="width: 240px; top: 70px; left: 0; overflow-y: auto; z-index: 1000;">
