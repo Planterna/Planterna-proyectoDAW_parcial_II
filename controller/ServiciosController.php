@@ -12,12 +12,12 @@
         private $message;
 
 
-        public function __construct()
-        {
-            $this->model = new ServiciosDAO();
-            $this->util = new functionValidationsServices();
-            $this->message = new FunctionUtil();
-        }
+    public function __construct()
+    {
+        $this->model = new ServiciosDAO();
+        $this->util = new functionValidationsServices();
+        $this->message = new FunctionUtil();
+    }
 
         public function index()
         {

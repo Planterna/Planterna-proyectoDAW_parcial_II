@@ -1,10 +1,10 @@
 <!--autor: Jonathan Alejandro Baquerizo-->
 
 <?php
-    require_once 'config/Conexion.php';
-    class ServiciosDAO {
+require_once 'config/Conexion.php';
+class ServiciosDAO {
 
-        private $con;
+    private $con;
 
         public function __construct() {
             $this->con = Conexion::getConexion();
@@ -160,7 +160,7 @@
           $stmt = $this->con->prepare($sql);
           $stmt->bindParam(":typeSer",$servicio->getTipoServicio(), PDO::PARAM_STR);
           $stmt->bindParam(":estado",$servicio->getEstado(), PDO::PARAM_STR);
-        $stmt->bindParam(":id_tecnico",$servicio->getId_tecnico(), PDO::PARAM_INT);
+          $stmt->bindParam(":id_tecnico",$servicio->getId_tecnico(), PDO::PARAM_INT);
           $stmt->bindParam(":fechaMod",$servicio->getfechaModificacion(), PDO::PARAM_STR);
           $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
 
@@ -186,6 +186,4 @@
             }
         }
     }
-
-
 ?>
