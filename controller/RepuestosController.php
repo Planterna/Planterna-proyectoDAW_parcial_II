@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 require_once 'model/dao/RepuestosDAO.php';
 require_once 'model/dao/MarcaDAO.php';
 require_once 'model/dao/ModeloDAO.php';
@@ -176,7 +175,7 @@ class RepuestosController
 
     public function delete()
     {
-      /*  session_start();
+        /* session_start();
         $this->validarAcceso([1, 2]); */
 
         $id = htmlentities(trim($_GET['id']));
@@ -236,22 +235,3 @@ class RepuestosController
     //     }
     // }
 }
-=======
-    require_once 'model/dao/ProductosDAO.php';
-    class RepuestosController {
-
-        private $model;
-
-        public function __construct() {
-            $this->model = new ProductosDAO();
-        }
-
-        public function index() {
-            require_once VPRODUCTOS .'main.php';
-        }
-
-    }
-
-
-?>
->>>>>>> 40858e616dc5bfcb5344e83b7d8a631c8cd99cfc
