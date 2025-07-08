@@ -1,4 +1,5 @@
 <?php
+// autor: Mero Araujo Jeremy
 require_once 'config/Conexion.php';
 
 class ModeloDAO{
@@ -10,8 +11,7 @@ class ModeloDAO{
 
     public function filterModel($id){
         try{
-            $sql = "SELECT * FROM modelos
-            WHERE mod_idMarca = :idMarca";
+            $sql = "SELECT * FROM modelos WHERE mod_idMarca = :idMarca";
             $stmt = $this->conx->prepare($sql);
             $stmt->bindParam(":idMarca", $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -21,8 +21,6 @@ class ModeloDAO{
             echo "Error en filterModel ModeloDAO: " . $ex->getMessage();    
             return []; 
         }
-        
-    
     }
 }
 ?>

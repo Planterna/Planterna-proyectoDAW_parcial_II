@@ -1,4 +1,5 @@
 <?php
+//Autor: Mero Araujo Jeremy
 require_once 'model/dao/ModeloDAO.php';
 
 class ModeloController{
@@ -8,7 +9,7 @@ class ModeloController{
         $this->modelModelo = new ModeloDAO();
     }
     public function getModel(){
-            header('Content-Type: aplication/json');
+            header('Content-Type: application/json');
             $idMarca = isset($_GET['idMarca']) ? (int)$_GET['idMarca'] : null;
             if($idMarca){
                 $modelos = $this->modelModelo->filterModel($idMarca);

@@ -1,4 +1,5 @@
 <?php
+//Autor: Mero Araujo Jeremy
 function redirectWithMessage($exito, $exitoMsg, $errMsg, $redirectUrl){
         if(!isset($_SESSION)) session_start();
         $_SESSION['mensaje']= ($exito)?$exitoMsg:$errMsg;
@@ -39,4 +40,41 @@ function validarTipoRepuesto($tipoRepuesto){
     $tiposValidos = ['Original', 'Generico', 'Reacondicionado'];
     return in_array($tipoRepuesto, $tiposValidos, true);
 }
+
+function validarSesionCookie() {
+    /*if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($_SESSION['loggedIn'])) {
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['nombre'] = 'Jeremy'; 
+    }*/
+
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+        $_SESSION['mensaje'] = 'Debe iniciar sesión!';
+        $_SESSION['color'] = 'danger';
+        header("Location: index.php?c=login&f=index");
+        exit();
+    } /*else {
+        if (!empty($_SESSION['nombre'])) {
+            setcookie("usuario", $_SESSION['nombre'], time() + (86400 * 30), "/");
+        } else {
+            setcookie("usuario", "", time() - 3600, "/");
+        }
+    }*/
+}
+
+
+
+function validarAcceso(array $roles){
+    if(!isset($_SESSION['rol'])|| !in_array($_SESSION['rol'], $roles)){
+        $_SESSION['mensaje'] = 'Acceso no permitido';
+        $_SESSION['color'] = 'danger';
+        header("Location: index.php?c=servicios&f=index");
+        exit();
+    }
+}
+
+
 ?>
