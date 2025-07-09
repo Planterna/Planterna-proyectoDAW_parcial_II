@@ -15,23 +15,22 @@ class CotizacionController {
     }
 
     public function info() {
-        $this->listar(); 
+        require_once 'view/cotizacion/cotizacion_info.php';
     }
 
     public function listar() {
-
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $cotizaciones = $this->cotizacionDAO->listarCotizaciones();
-        require_once 'view/cotizacion/cotizacion_list.php'; 
+        require_once 'view/cotizacion/cotizacion_list.php';
     }
 
     public function form_registrar() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        require_once 'view/cotizacion/cotizacion_new.php'; 
+        require_once 'view/cotizacion/cotizacion_new.php';
     }
 
     public function registrar() {
@@ -48,26 +47,29 @@ class CotizacionController {
 
             if (empty($cliente_nombre)) {
                 $errors[] = "El nombre del cliente es obligatorio.";
-            } elseif (strlen($cliente_nombre) > 255) {
-                $errors[] = "El nombre del cliente es demasiado largo.";
+            } elseif (strlen($cliente_nombre) > 100) {
+                $errors[] = "El nombre del cliente es demasiado largo (máx. 100 caracteres).";
             }
 
             if (empty($descripcion_servicio)) {
                 $errors[] = "La descripción del servicio es obligatoria.";
-            } elseif (strlen($descripcion_servicio) > 1000) {
+            } elseif (strlen($descripcion_servicio) > 65535) {
                 $errors[] = "La descripción del servicio es demasiado larga.";
             }
 
-            if (!empty($cliente_correo) && !filter_var($cliente_correo, FILTER_VALIDATE_EMAIL)) {
+            if (empty($cliente_correo)) {
+                $errors[] = "El correo electrónico es obligatorio.";
+            } elseif (!filter_var($cliente_correo, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "El formato del correo electrónico no es válido.";
-            } elseif (strlen($cliente_correo) > 255) {
-                $errors[] = "El correo electrónico es demasiado largo.";
+            } elseif (strlen($cliente_correo) > 100) {
+                $errors[] = "El correo electrónico es demasiado largo (máx. 100 caracteres).";
             }
 
-            if (!empty($cliente_telefono) && !preg_match('/^[0-9]{7,15}$/', $cliente_telefono)) {
-                $errors[] = "El teléfono solo debe contener números (7-15 dígitos).";
+
+            if (!empty($cliente_telefono) && !preg_match('/^[0-9]{7,20}$/', $cliente_telefono)) {
+                $errors[] = "El teléfono solo debe contener números (7-20 dígitos).";
             } elseif (strlen($cliente_telefono) > 20) {
-                $errors[] = "El número de teléfono es demasiado largo.";
+                $errors[] = "El número de teléfono es demasiado largo (máx. 20 dígitos).";
             }
 
             if (!empty($errors)) {
@@ -84,9 +86,9 @@ class CotizacionController {
                 $cliente_correo,
                 $cliente_telefono,
                 $descripcion_servicio,
-                'Pendiente',
-                null,
-                null
+                'Pendiente', 
+                null, 
+                null  
             );
 
             if ($this->cotizacionDAO->registrarCotizacion($cotizacion)) {
@@ -113,7 +115,7 @@ class CotizacionController {
             $cotizacion = $this->cotizacionDAO->obtenerCotizacionPorId($id_cotizacion);
 
             if ($cotizacion) {
-                require_once 'view/cotizacion/cotizacion_edit.php'; // Ruta relativa a la raíz
+                require_once 'view/cotizacion/cotizacion_edit.php';
             } else {
                 $_SESSION['mensaje'] = "Cotización no encontrada.";
                 $_SESSION['color'] = "danger";
@@ -141,33 +143,35 @@ class CotizacionController {
             $estado = isset($_POST['estado']) ? trim($_POST['estado']) : '';
 
             $errors = [];
-            $estados_validos = ['Pendiente', 'Aceptada', 'Rechazada', 'Completada', 'Cancelada']; 
+            $estados_validos = ['Pendiente', 'Aceptada', 'Rechazada', 'Completada', 'Cancelada'];
 
             if (empty($id_cotizacion) || !is_numeric($id_cotizacion)) {
                 $errors[] = "ID de cotización inválido.";
             }
             if (empty($cliente_nombre)) {
                 $errors[] = "El nombre del cliente es obligatorio.";
-            } elseif (strlen($cliente_nombre) > 255) {
-                $errors[] = "El nombre del cliente es demasiado largo.";
+            } elseif (strlen($cliente_nombre) > 100) {
+                $errors[] = "El nombre del cliente es demasiado largo (máx. 100 caracteres).";
             }
 
             if (empty($descripcion_servicio)) {
                 $errors[] = "La descripción del servicio es obligatoria.";
-            } elseif (strlen($descripcion_servicio) > 1000) {
+            } elseif (strlen($descripcion_servicio) > 65535) {
                 $errors[] = "La descripción del servicio es demasiado larga.";
             }
 
-            if (!empty($cliente_correo) && !filter_var($cliente_correo, FILTER_VALIDATE_EMAIL)) {
+            if (empty($cliente_correo)) {
+                $errors[] = "El correo electrónico es obligatorio.";
+            } elseif (!filter_var($cliente_correo, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "El formato del correo electrónico no es válido.";
-            } elseif (strlen($cliente_correo) > 255) {
-                $errors[] = "El correo electrónico es demasiado largo.";
+            } elseif (strlen($cliente_correo) > 100) {
+                $errors[] = "El correo electrónico es demasiado largo (máx. 100 caracteres).";
             }
 
-            if (!empty($cliente_telefono) && !preg_match('/^[0-9]{7,15}$/', $cliente_telefono)) {
-                $errors[] = "El teléfono solo debe contener números (7-15 dígitos).";
+            if (!empty($cliente_telefono) && !preg_match('/^[0-9]{7,20}$/', $cliente_telefono)) {
+                $errors[] = "El teléfono solo debe contener números (7-20 dígitos).";
             } elseif (strlen($cliente_telefono) > 20) {
-                $errors[] = "El número de teléfono es demasiado largo.";
+                $errors[] = "El número de teléfono es demasiado largo (máx. 20 dígitos).";
             }
 
             if (!in_array($estado, $estados_validos)) {
@@ -189,8 +193,8 @@ class CotizacionController {
                 $cliente_telefono,
                 $descripcion_servicio,
                 $estado,
-                null,
-                null
+                null, 
+                null  
             );
 
             if ($this->cotizacionDAO->actualizarCotizacion($cotizacion)) {
@@ -255,4 +259,3 @@ class CotizacionController {
         exit();
     }
 }
-?>

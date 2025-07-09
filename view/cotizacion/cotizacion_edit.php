@@ -24,8 +24,7 @@
                 <div class="mb-3">
                     <label for="cliente_correo" class="form-label">Correo Electrónico:</label>
                     <input type="email" class="form-control" id="cliente_correo" name="cliente_correo"
-                           value="<?php echo htmlspecialchars($cotizacion->getClienteCorreo()); ?>">
-                </div>
+                           value="<?php echo htmlspecialchars($cotizacion->getClienteCorreo()); ?>" required> </div>
                 <div class="mb-3">
                     <label for="cliente_telefono" class="form-label">Teléfono:</label>
                     <input type="text" class="form-control" id="cliente_telefono" name="cliente_telefono"

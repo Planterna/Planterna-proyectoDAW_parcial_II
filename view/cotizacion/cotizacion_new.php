@@ -16,19 +16,22 @@
             <form action="index.php?c=Cotizacion&f=registrar" method="POST">
                 <div class="mb-3">
                     <label for="cliente_nombre" class="form-label">Nombre del Cliente:</label>
-                    <input type="text" class="form-control" id="cliente_nombre" name="cliente_nombre" required>
+                    <input type="text" class="form-control" id="cliente_nombre" name="cliente_nombre" required
+                           value="<?php echo isset($_SESSION['old_input']['cliente_nombre']) ? htmlspecialchars($_SESSION['old_input']['cliente_nombre']) : ''; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="cliente_correo" class="form-label">Correo Electrónico:</label>
-                    <input type="email" class="form-control" id="cliente_correo" name="cliente_correo">
+                    <input type="email" class="form-control" id="cliente_correo" name="cliente_correo" required
+                           value="<?php echo isset($_SESSION['old_input']['cliente_correo']) ? htmlspecialchars($_SESSION['old_input']['cliente_correo']) : ''; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="cliente_telefono" class="form-label">Teléfono:</label>
-                    <input type="text" class="form-control" id="cliente_telefono" name="cliente_telefono">
+                    <input type="text" class="form-control" id="cliente_telefono" name="cliente_telefono"
+                           value="<?php echo isset($_SESSION['old_input']['cliente_telefono']) ? htmlspecialchars($_SESSION['old_input']['cliente_telefono']) : ''; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="descripcion_servicio" class="form-label">Descripción del Servicio:</label>
-                    <textarea class="form-control" id="descripcion_servicio" name="descripcion_servicio" rows="5" required></textarea>
+                    <textarea class="form-control" id="descripcion_servicio" name="descripcion_servicio" rows="5" required><?php echo isset($_SESSION['old_input']['descripcion_servicio']) ? htmlspecialchars($_SESSION['old_input']['descripcion_servicio']) : ''; ?></textarea>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="submit" class="btn btn-primary">Registrar Cotización</button>
