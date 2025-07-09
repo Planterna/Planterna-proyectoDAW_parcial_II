@@ -1,95 +1,121 @@
 <?php
-class Repuesto{
-    private $id, $nombre, $marca, $modelo, $precio, $stock, $fechaRegistro, $fechaActualizacion, $tipoRepuesto;
-    public function __construct(){
+//Autor: Mero Araujo Jeremy
+class Repuesto {
+    private $id;
+    private $nombre;
+    private $descripcion;
+    private $precio;
+    private $stock;
+    private $tipoRepuesto;             
+    private $idMarca;
+    private $idModelo;
+    private $estado;        
+    private $fechaRegistro;
+    private $fechaActualizacion;       
 
-    }
+    public function __construct() {}
 
-    public function getId(){
-        return $this->id;
+    public function getId()
+    {
+        return $this->id; 
     }
-    
-    public function getNombre(){
+    public function getNombre() 
+    {
         return $this->nombre;
     }
-
-    public function getMarca(){
-        return $this->marca;
+    public function getDescripcion()
+    {
+        return $this->descripcion;
     }
-
-    public function getModelo(){
-        return $this->modelo;
-    }
-
-    public function getPrecio(){
+    public function getPrecio()
+    { 
         return $this->precio;
     }
-    
-    public function getStock(){
-        return $this->stock;
+    public function getStock()
+    { 
+        return $this->stock; 
+    }
+    public function getTipoRepuesto()
+    { 
+        return $this->tipoRepuesto; 
+    }
+    public function getIdMarca() 
+    { 
+        return $this->idMarca;
+    }
+    public function getIdModelo() 
+    { 
+        return $this->idModelo;
+    }
+    public function getEstado() 
+    { 
+        return $this->estado;
     }
 
-    public function getFechaRegistro(){
+    public function getFechaRegistro()
+    {
         return $this->fechaRegistro;
     }
 
-    public function getFechaActualizacion(){
+    public function getFechaActualizacion()
+    {
         return $this->fechaActualizacion;
     }
-
-    public function getTipoRepuesto(){
-        return $this->tipoRepuesto;
+    public function setId($id) 
+    { 
+        $this->id = $id;
     }
-
-    public function setId($id){
-        return $this->id = $id;
+    public function setNombre($nombre) 
+    { 
+        $this->nombre = $nombre; 
     }
-
-    public function setNombre($nombre){
-        return $this->nombre = $nombre;
+    public function setDescripcion($descripcion)
+    { 
+        $this->descripcion = $descripcion;
     }
-    
-    public function setMarca($marca){
-        return $this->marca = $marca;
+    public function setPrecio($precio)
+    { 
+        $this->precio = $precio;
     }
-
-    public function setModelo($modelo){
-        return $this->modelo = $modelo;
+    public function setStock($stock) 
+    { 
+        $this->stock = $stock;
     }
-
-    public function setPrecio($precio){
-        return $this->precio = $precio;
-
+    public function setTipoRepuesto($tipoRepuesto)
+    { 
+        $this->tipoRepuesto = $tipoRepuesto; 
     }
-
-    public function setStock($stock){
-        return $this->stock = $stock;
+    public function setIdMarca($idMarca) 
+    { 
+        $this->idMarca= $idMarca; 
     }
-
-    public function setFechaRegistro($fechaRegistro){
-        return $this->fechaRegistro = $fechaRegistro;
+    public function setIdModelo($idModelo) 
+    { 
+        $this->idModelo = $idModelo; 
     }
-
-    public function setFechaActualizacion($fechaActualizacion){
-        return $this->fechaActualizacion = $fechaActualizacion;
+    public function setEstado($estado) 
+    { 
+        $this->estado = $estado; 
     }
-
-    public function setTipoRepuesto($tipoRepuesto){
-        return $this->tipoRepuesto = $tipoRepuesto;
+    public function setFechaRegistro($fechaRegistro)
+    {
+        $this->fechaRegistro = $fechaRegistro;
     }
-
-    public function __get($atributo){
-        if(property_exists('Repuesto', $atributo)){
-            return $atributo;
+    public function setFechaActualizacion($fechaActualizacion)
+    {
+        $this->fechaActualizacion = $fechaActualizacion;
+    }
+    public function __get($atributo) {
+        if (property_exists($this, $atributo)) {
+            return $this->$atributo;
         }
-            return null;
+        return null;
     }
 
-    public function __set($valor, $atributo){
-        if(property_exists('Repuesto', $atributo)){
-            return $this->$atributo = $valor;
+    public function __set($atributo, $valor) {
+        if (property_exists($this, $atributo)) {
+            $this->$atributo = $valor;
         }
-            return null;
     }
 }
 ?>

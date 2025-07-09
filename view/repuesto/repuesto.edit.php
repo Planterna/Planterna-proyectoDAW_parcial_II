@@ -1,12 +1,12 @@
+<!--Autor: Mero Araujo Jeremy-->
 <?php require_once HEADER; ?>
-<body>
+<body class="form-replacement">
 <main class="contenedor">
   <section class="container-form">
     <h2>Editar Repuesto</h2>
 
-    <form class="form" action="index.php?c=repuestos&f=edit" method="POST" enctype="multipart/form-data" name="formulario-editar" id="formulario-editar" novalidate>
-      <input type="hidden" name="id" id="id" value="<?= $datosFormulario['id'] ?>">
-      <input type="hidden" name="imagenActual" value="<?= htmlspecialchars(basename($datosFormulario['imagen_actual'])) ?>">
+    <form class="form" action="index.php?c=repuestos&f=edit" method="POST" name="formulario-editar" id="formulario-editar" novalidate>
+      <input type="hidden" name="id" id="id" value="<?= $datosFormulario['id'] ?? ''?>">
 
       <div id="success-msg" style="display: none; color: green; font-weight: bold; margin-bottom: 15px;"></div>
 
@@ -14,17 +14,13 @@
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control" value="<?= $datosFormulario['nombre'] ?>">
-          <small class="error-message" id="error-nombre">
-            <?= $errores['nombre'] ?? '' ?>
-          </small>
+          <small class="error-message" id="error-nombre"><?= $errores['nombre'] ?? '' ?></small>
         </div>
 
         <div class="form-group">
           <label for="descripcion">Descripción</label>
           <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?= $datosFormulario['descripcion'] ?>">
-          <small class="error-message" id="error-descripcion">
-            <?= $errores['descripcion'] ?? '' ?>
-          </small>
+          <small class="error-message" id="error-descripcion"><?= $errores['descripcion'] ?? '' ?></small>
         </div>
       </div>
 
@@ -32,17 +28,13 @@
         <div class="form-group">
           <label for="precio">Precio</label>
           <input type="text" name="precio" id="precio" class="form-control" value="<?= $datosFormulario['precio'] ?>">
-          <small class="error-message" id="error-precio">
-            <?= $errores['precio'] ?? '' ?>
-          </small>
+          <small class="error-message" id="error-precio"><?= $errores['precio'] ?? '' ?></small>
         </div>
 
         <div class="form-group">
           <label for="stock">Stock</label>
           <input type="text" name="stock" id="stock" class="form-control" value="<?= $datosFormulario['stock'] ?>">
-          <small class="error-message" id="error-stock">
-            <?= $errores['stock'] ?? '' ?>
-          </small>
+          <small class="error-message" id="error-stock"><?= $errores['stock'] ?? '' ?></small>
         </div>
       </div>
 
@@ -57,9 +49,7 @@
               </option>
             <?php endforeach; ?>
           </select>
-          <small class="error-message" id="error-marca">
-            <?= $errores['marca'] ?? ''?>
-          </small>
+          <small class="error-message" id="error-marca"><?= $errores['marca'] ?? '' ?></small>
         </div>
 
         <div class="form-group">
@@ -74,9 +64,7 @@
               <?php endforeach; ?>
             <?php endif; ?>
           </select>
-          <small class="error-message" id="error-modelo">
-            <?= $errores['modelo'] ?? ''?>
-          </small>
+          <small class="error-message" id="error-modelo"><?= $errores['modelo'] ?? '' ?></small>
         </div>
       </div>
 
@@ -93,20 +81,17 @@
             <input type="radio" name="tipoRepuesto" value="Reacondicionado" <?= ($datosFormulario['tipoRepuesto'] == 'Reacondicionado') ? 'checked' : '' ?>> Reacondicionado
           </label>
         </div>
-        <small class="error-message" id="error-tipoRepuesto">
-          <?= $errores['tipoRepuesto'] ?? ''?>
-        </small>
+        <small class="error-message" id="error-tipoRepuesto"><?= $errores['tipoRepuesto'] ?? '' ?></small>
       </fieldset>
 
       <fieldset class="fieldset-radio">
         <legend>Estado</legend>
         <div class="radio-group">
-          <label class="radio-label">
-            <input type="checkbox" id="estado" name="estado" value="1" <?= ($datosFormulario['estado'] == '1' || $datosFormulario['estado'] == 1) ? 'checked' : '' ?>>
-            Activo
-          </label>
+          <input type="checkbox" id="estado" name="estado" value="1" <?= ($datosFormulario['estado'] == '1' || $datosFormulario['estado'] == 1) ? 'checked' : '' ?>>
+          <label for="estado" class="radio-label">Activo</label>
         </div>
       </fieldset>
+
       <div class="form-group">
         <button type="submit" name="btnActualizar" id="btn-form" class="btn-submit">Actualizar</button>
       </div>
@@ -115,3 +100,6 @@
 </main>
 <script src="assets/js/script.js"></script>
 </body>
+<?php require_once FOOTER ?>
+
+
