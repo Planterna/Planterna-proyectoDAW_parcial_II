@@ -1,5 +1,5 @@
 <?php
-//Autor: Mero Araujo Jeremcy
+//Autor: Mero Araujo Jeremy
 class Repuesto {
     private $id;
     private $nombre;

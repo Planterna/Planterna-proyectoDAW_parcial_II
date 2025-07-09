@@ -11,12 +11,12 @@ function redirectWithMessage($exito, $exitoMsg, $errMsg, $redirectUrl){
 
 function validarNombre($nombre){
     $nombre = trim($nombre);
-    return preg_match('/^[\p{L}\p{N} \-áéíóúÁÉÍÓÚñÑ]{3,100}$/u', $nombre) === 1;
+    return preg_match('/^[\p{L}\p{N} \-áéíóúÁÉÍÓÚñÑ]{3,40}$/u', $nombre) === 1;
 }
 
 function validarDescripcion($descripcion){
     $descripcion = trim($descripcion);
-    return preg_match('/^[\p{L}\p{N} .,;:!¡¿?\'"()\-]{1,255}$/u', $descripcion) === 1;
+    return preg_match('/^[\p{L}\p{N} .,;:!¡¿?\'"()\-]{1,100}$/u', $descripcion) === 1;
 }
 
 function validarPrecio($precio){
@@ -41,28 +41,16 @@ function validarTipoRepuesto($tipoRepuesto){
     return in_array($tipoRepuesto, $tiposValidos, true);
 }
 
-function validarSesionCookie() {
-    /*if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+function validarSesion() {
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
     }
-
-    if (!isset($_SESSION['loggedIn'])) {
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['nombre'] = 'Jeremy'; 
-    }*/
-
     if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
         $_SESSION['mensaje'] = 'Debe iniciar sesión!';
         $_SESSION['color'] = 'danger';
         header("Location: index.php?c=login&f=index");
         exit();
-    } /*else {
-        if (!empty($_SESSION['nombre'])) {
-            setcookie("usuario", $_SESSION['nombre'], time() + (86400 * 30), "/");
-        } else {
-            setcookie("usuario", "", time() - 3600, "/");
-        }
-    }*/
+    } 
 }
 
 

@@ -1,14 +1,12 @@
 <!--Autor: Mero Araujo Jeremy-->
 <?php require_once HEADER; ?>
-<body class="form-replacement">
-<main class="contenedor">
+<body class="form-replacement container">
+<main class="container">
   <section class="container-form">
     <h2>Registrar Repuesto</h2>
 
     <form class="form" action="index.php?c=repuestos&f=new" method="POST" name="formulario-crear" id="formulario-crear" novalidate>
-
       <div id="success-msg" style="display: none; color: green; font-weight: bold; margin-bottom: 15px;"></div>
-
       <div class="form-section">
         <div class="form-group">
           <label for="nombre">Nombre</label>

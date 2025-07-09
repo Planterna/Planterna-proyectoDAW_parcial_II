@@ -4,7 +4,7 @@ require_once 'model/dto/Repuesto.php';
 require_once 'model/dao/RepuestosDAO.php';
 require_once 'model/dao/MarcaDAO.php';
 require_once 'model/dao/ModeloDAO.php';
-require_once 'util/funcionRepuestos.php';
+require_once 'util/functionReplacement.php';
 
 class RepuestosController
 {
@@ -20,15 +20,10 @@ class RepuestosController
     }
 
     public function index()
-{
-    /*if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['rol'] = 1;
-        $_SESSION['nombre'] = 'Admin';
-    }*/
-        validarSesionCookie();
-        validarAcceso([2,3]);
+    {
+    validarSesion();
+    validarAcceso([2,3]);
+
     $limit = 5;
     $paginaAct = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $paginaAct = max($paginaAct, 1);
@@ -43,25 +38,27 @@ class RepuestosController
 }
     public function view_new()
     {   
-        validarSesionCookie();
-        validarAcceso([2,3]);
-        $marcas = $this->modelMarca->selectAll("");
-        $idMarca = isset($_POST['marca']) ? (int)trim($_POST['marca']) : null;
-        $modelos = $idMarca ? $this->modelModelo->filterModel($idMarca) : [];
 
-        $datosFormulario = [
-            'nombre' => $_POST['nombre'] ?? '',
-            'descripcion' => $_POST['descripcion'] ?? '',
-            'precio' => $_POST['precio'] ?? '',
-            'stock' => $_POST['stock'] ?? '',
-            'tipoRepuesto' => $_POST['tipoRepuesto'] ?? '',
-            'marca' => $_POST['marca'] ?? '',
-            'modelo' => $_POST['modelo'] ?? null,
-            'estado' => $_POST['estado'] ?? 0,
-        ];
+    validarSesion();
+    validarAcceso([2,3]);
+    
+    $marcas = $this->modelMarca->selectAll("");
+    $idMarca = isset($_POST['marca']) ? (int)trim($_POST['marca']) : null;
+    $modelos = $idMarca ? $this->modelModelo->filterModel($idMarca) : [];
 
-        $titulo = "Registrar Producto";
-        require_once VREPUESTOS . 'registrar.php';
+    $datosFormulario = [
+        'nombre' => $_POST['nombre'] ?? '',
+        'descripcion' => $_POST['descripcion'] ?? '',
+        'precio' => $_POST['precio'] ?? '',
+        'stock' => $_POST['stock'] ?? '',
+        'tipoRepuesto' => $_POST['tipoRepuesto'] ?? '',
+        'marca' => $_POST['marca'] ?? '',
+        'modelo' => $_POST['modelo'] ?? null,
+        'estado' => $_POST['estado'] ?? 0,
+    ];
+
+    $titulo = "Registrar Producto";
+    require_once VREPUESTOS . 'registrar.php';
     }
 
     public function new()
@@ -78,10 +75,10 @@ class RepuestosController
         $errores = [];
 
         if (!validarNombre($nombre)) {
-            $errores['nombre'] = "El nombre es obligatorio y debe tener entre 3 y 100 caracteres válidos.";
+            $errores['nombre'] = "El nombre es obligatorio y debe tener entre 3 y 40 caracteres válidos.";
         }
         if (!validarDescripcion($descripcion)) {
-            $errores['descripcion'] = "La descripción es obligatoria y debe tener hasta 255 caracteres.";
+            $errores['descripcion'] = "La descripción es obligatoria y debe tener hasta 100 caracteres.";
         }
         if (!validarPrecio($precio)) {
             $errores['precio'] = "El precio debe ser un número positivo válido.";
@@ -131,7 +128,7 @@ class RepuestosController
 
     public function view_edit()
     {
-        validarSesionCookie();
+        validarSesion();
         validarAcceso([2,3]);
 
         $id = trim($_GET['id']);
@@ -172,10 +169,10 @@ class RepuestosController
         $errores = [];
 
         if (!validarNombre($nombre)) {
-            $errores['nombre'] = "El nombre es obligatorio y debe tener entre 3 y 100 caracteres.";
+            $errores['nombre'] = "El nombre es obligatorio y debe tener entre 3 y 40 caracteres válidos.";
         }
         if (!validarDescripcion($descripcion)) {
-            $errores['descripcion'] = "La descripción es obligatoria y válida.";
+            $errores['descripcion'] = "La descripción es obligatoria y debe tener hasta 100 caracteres.";
         }
         if (!validarPrecio($precio)) {
             $errores['precio'] = "El precio debe ser un número positivo válido.";
@@ -183,14 +180,14 @@ class RepuestosController
         if (!validarStock($stock)) {
             $errores['stock'] = "El stock debe ser un número entero mayor o igual a 0.";
         }
+        if (!validarTipoRepuesto($tipoRepuesto)) {
+            $errores['tipoRepuesto'] = "Seleccione un tipo de repuesto válido.";
+        }
         if (!validarMarca($marca)) {
             $errores['marca'] = "Seleccione una marca válida.";
         }
         if (!validarModelo($modelo)) {
             $errores['modelo'] = "Seleccione un modelo válido.";
-        }
-        if (!validarTipoRepuesto($tipoRepuesto)) {
-            $errores['tipoRepuesto'] = "Seleccione un tipo válido.";
         }
 
         if (!empty($errores)) {
@@ -225,8 +222,9 @@ class RepuestosController
 
     public function delete()
     {
-        validarSesionCookie();
+        validarSesion();
         validarAcceso([2,3]);
+
         $id = htmlentities(trim($_GET['id']));
         $exito = $this->model->delete($id);
 
@@ -240,8 +238,10 @@ class RepuestosController
 
     public function search()
     {
-    validarSesionCookie();
+
+    validarSesion();
     validarAcceso([2,3]);
+    
     $limit = 5;
     $paginaAct = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $paginaAct = max($paginaAct, 1);

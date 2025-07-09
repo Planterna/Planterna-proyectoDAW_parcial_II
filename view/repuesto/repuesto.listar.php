@@ -1,12 +1,10 @@
 <!--Autor: Mero Araujo Jeremy-->
 <?php require_once HEADER; ?>
-
 <title>Listado de Repuestos</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <body class="list-replacement">
     <main class="main-container">
         <h2><i class="fas fa-tools"></i> Listado de Repuestos</h2>
-    
         <div class="search-main">
             <form action="index.php?c=repuestos&f=search" method="POST" class="search-form" role="search">
                 <input type="text" name="b" value="<?= isset($_POST['b']) ? htmlspecialchars($_POST['b']) : '' ?>" placeholder="Buscar" />
