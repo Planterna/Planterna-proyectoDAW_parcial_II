@@ -1,3 +1,5 @@
+  <!--autor: Jonathan Alejandro Baquerizo-->
+
 <?php require_once HEADER ?>
 <div class="container-sm main-content">
     <h2 class="titulos_h2 text-center page-title">Estado de Solicitudes</h2>

@@ -1,6 +1,5 @@
-    <!--autor: Jonathan Alejandro Baquerizo-->
-
     <?php
+      //autor: Jonathan Alejandro Baquerizo
     require_once 'model/dto/Servicios.php';
     require_once 'model/dao/ServiciosDAO.php';
     require_once 'util/functionsValidationsServices.php';

@@ -1,7 +1,5 @@
-<!--autor: Jonathan Alejandro Baquerizo-->
-
-<?php
-// dto data transfer object
+ <?php
+ //autor: Jonathan Alejandro Baquerizo
 class Servicio {
     //properties
     private $id, $nombre, $cedula, $telefono, $correo, 
