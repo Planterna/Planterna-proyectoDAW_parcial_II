@@ -59,7 +59,7 @@ function validarAcceso(array $roles){
     if(!isset($_SESSION['rol'])|| !in_array($_SESSION['rol'], $roles)){
         $_SESSION['mensaje'] = 'Acceso no permitido';
         $_SESSION['color'] = 'danger';
-        header("Location: index.php?c=repuestos&f=index");
+        header("Location: index.php?c=servicios&f=index");
         exit();
     }
 }

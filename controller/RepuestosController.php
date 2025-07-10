@@ -22,7 +22,7 @@ class RepuestosController
     public function index()
     {
     validarSesion();
-    validarAcceso([1,2,3]);
+    validarAcceso([2,3]);
     $limit = 5;
     $paginaAct = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $paginaAct = max($paginaAct, 1);
