@@ -43,23 +43,23 @@ function validarTipoRepuesto($tipoRepuesto){
 
 function validarSesion() {
     if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+        session_start();
     }
+
     if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
         $_SESSION['mensaje'] = 'Debe iniciar sesión!';
         $_SESSION['color'] = 'danger';
         header("Location: index.php?c=login&f=index");
         exit();
-    } 
+    }
 }
-
 
 
 function validarAcceso(array $roles){
     if(!isset($_SESSION['rol'])|| !in_array($_SESSION['rol'], $roles)){
         $_SESSION['mensaje'] = 'Acceso no permitido';
         $_SESSION['color'] = 'danger';
-        header("Location: index.php?c=servicios&f=index");
+        header("Location: index.php?c=repuestos&f=index");
         exit();
     }
 }

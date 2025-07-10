@@ -22,8 +22,7 @@ class RepuestosController
     public function index()
     {
     validarSesion();
-    validarAcceso([2,3]);
-
+    validarAcceso([1,2,3]);
     $limit = 5;
     $paginaAct = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $paginaAct = max($paginaAct, 1);
@@ -151,7 +150,7 @@ class RepuestosController
 
         $errores = [];
         $titulo = "Editar Repuesto";
-        require_once VREPUESTOS . "edit.php";
+        require_once VREPUESTOS . "editar.php";
     }
 
     public function edit()
@@ -195,7 +194,7 @@ class RepuestosController
             $modelos = !empty($marca) ? $this->modelModelo->filterModel((int)$marca) : [];
             $datosFormulario = compact('id', 'nombre', 'descripcion', 'precio', 'stock', 'tipoRepuesto', 'marca', 'modelo', 'estado');
             $titulo = "Editar Repuesto";
-            require_once VREPUESTOS . "edit.php";
+            require_once VREPUESTOS . "editar.php";
             return;
         }
 
@@ -240,7 +239,7 @@ class RepuestosController
     {
 
     validarSesion();
-    validarAcceso([2,3]);
+    validarAcceso([1,2,3]);
     
     $limit = 5;
     $paginaAct = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
