@@ -85,10 +85,11 @@
             $this->util->validationSession();
             $rol = $this->util->validationRole();
             $parametro = htmlentities($_POST['b']); 
-            $id_user = $this->util->validationId();            
+            $id_user = $this->util->validationId();  
             if($rol == 1){
                 $resultados = $this->model->selectAll($parametro, $id_user);
             }else{
+                $id_tecnico = $this->util->validationId();
                 $resultados = $this->model->selectAllAdTc($parametro);
             }
             require_once VSERVICIOS . 'consultas.php';
