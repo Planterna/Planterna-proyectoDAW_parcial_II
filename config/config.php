@@ -11,8 +11,6 @@ define("SLIDERBAR", 'view/templates/sliderbar.php');
 // ruta de vistas modulo servicios
 define("VSERVICIOS", "view/servicios/servicios.");
 
-// ruta de vistas modulo productos
-define("VPRODUCTOS", "view/productos/productos.");
 
 // ruta de vistas modulo repuestos
 define("VREPUESTOS", "view/repuesto/repuesto.");
