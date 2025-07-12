@@ -50,17 +50,11 @@ class ServiciosDAO {
     public function selectAllforId($parametro){
         try{
             $sql = "select * from registroservicio where id_user=:parametro AND statusLogical=1" ;
-            //prepare statement 
             $stmt = $this->con->prepare($sql);
-            $busqueda = "%".$parametro."%"; // para buscar considencias tanto al un inicio como al final
-            //enviar parametros a la sentencia 
+            $busqueda = "%".$parametro."%";
             $stmt->bindparam(":parametro", $parametro, PDO::PARAM_STR);
-            //ejecutamos la sentencia
             $stmt->execute();
-            //recuperación (fetch) de resultados 
-            $res = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetchAll recupera todos los resultados retornandolos en el formato que especifiquemos
-            // FETCH_ASSOC: retorna cada registri(fila) de la tabla como un arreglo asociativo
-            // FECH_ALL: retorna todos los registros de la tabla como un arreglo asociativo
+            $res = $stmt->fetchAll(PDO::FETCH_ASSOC); 
             return $res;  
          
         }catch(PDOEXception $er){
@@ -74,7 +68,6 @@ class ServiciosDAO {
     public function selectAllItems(){
         try{
             $sql = "select * from registroservicio where statusLogical=1" ;
-            //prepare statement 
             $stmt = $this->con->prepare($sql);
             $stmt->execute();
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC); 
@@ -95,8 +88,6 @@ class ServiciosDAO {
            $stmt->bindParam(":id",$id, PDO::PARAM_INT);
            $stmt->execute();
            $res= $stmt->fetch(PDO::FETCH_ASSOC);
-           //feth retorna un solo elemento, en este caso como usamos FETCH_ASSOC retorna un arreglo asociativo
-           // que representa a una unica fila en la base de datos
            return $res;
         }catch(PDOEXception $er){
             error_log("Error en selectOne de ServicioDAO ". $er->getMessage());
@@ -119,7 +110,6 @@ class ServiciosDAO {
           $stmt->bindParam(":tipoServicio",$servicio->getTipoServicio(), PDO::PARAM_STR);
           $stmt->bindParam(":id_user",$servicio->getId_user(), PDO::PARAM_INT);
           $stmt->bindParam(":fecha",$servicio->getfechaCreacion(), PDO::PARAM_STR);
-
 
          $res= $stmt->execute(); 
          return $res;
@@ -145,7 +135,7 @@ class ServiciosDAO {
           $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
           $stmt->bindParam(":id_user",$servicio->getId_user(), PDO::PARAM_INT);
 
-         $res= $stmt->execute(); // execute retorna true si tuvo exito la ejecucion, false en caso contrario
+         $res= $stmt->execute();
          return $res;
         }catch(PDOEXception $er){
             error_log("Error en update de ServiciosDAO ". $er->getMessage());
@@ -163,7 +153,7 @@ class ServiciosDAO {
           $stmt->bindParam(":fechaMod",$servicio->getfechaModificacion(), PDO::PARAM_STR);
           $stmt->bindParam(":id",$servicio->getId(), PDO::PARAM_INT);
 
-         $res= $stmt->execute(); // execute retorna true si tuvo exito la ejecucion, false en caso contrario
+         $res= $stmt->execute(); 
          return $res;
         }catch(PDOEXception $er){
             error_log("Error en update de ServiciosDAO ". $er->getMessage());
@@ -177,7 +167,7 @@ class ServiciosDAO {
           $stmt = $this->con->prepare($sql);
            $stmt->bindParam(":id",$id, PDO::PARAM_INT);
 
-         $res= $stmt->execute(); // execute retorna true si tuvo exito la ejecucion, false en caso contrario
+         $res= $stmt->execute(); 
          return $res;
         }catch(PDOEXception $er){
             error_log("Error en logicalDelete de ServiciosDAO ". $er->getMessage());

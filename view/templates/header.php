@@ -69,7 +69,7 @@ if (!empty($_SESSION['mensaje'])) {
     unset($_SESSION['mensaje']);
     unset($_SESSION['color']);
 } else {
-    echo '<div style="margin-top: 65px"></div>';
+    echo '<div style="margin-top: 75px"></div>';
 }
 ?>
 

@@ -1,7 +1,7 @@
   <!--autor: Jonathan Alejandro Baquerizo-->
 
 <?php require_once HEADER ?>
-<div class="container-sm main-content">
+<div class="container-sm main-content" style="margin-top: 45px;">
     <h2 class="titulos_h2 text-center page-title">Estado de Solicitudes</h2>
     <div class="row search-and-add-section">
         <div class="col-sm-6 search-form-container">
