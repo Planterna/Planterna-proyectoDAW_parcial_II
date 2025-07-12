@@ -1,7 +1,7 @@
 <!--autor: Jonathan Alejandro Baquerizo-->
 
 <?php require_once HEADER ?>
-<div class="container-sm">
+<div class="container-sm" style="margin-top: 65px;">
   <div class="container-sm" id="form-section">
     <div class="contenedor_solicitud">
       <h2>Formulario de Solicitud de Reparación</h2>

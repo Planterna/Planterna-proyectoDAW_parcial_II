@@ -1,19 +1,17 @@
+<!--Autor: Mero Araujo Jeremy-->
 <?php require_once HEADER; ?>
-<body>
-<main class="contenedor">
+<body class="form-replacement container">
+<main class="container">
   <section class="container-form">
     <h2>Registrar Repuesto</h2>
 
-    <form class="form" action="index.php?c=repuestos&f=new" method="POST" enctype="multipart/form-data" name="formulario-crear" id="formulario-crear" novalidate>
-
+    <form class="form" action="index.php?c=repuestos&f=new" method="POST" name="formulario-crear" id="formulario-crear" novalidate>
       <div id="success-msg" style="display: none; color: green; font-weight: bold; margin-bottom: 15px;"></div>
-
       <div class="form-section">
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control" value="<?= $datosFormulario['nombre'] ?? '' ?>">
-          <small class="error-message" id="error-nombre"><?= $errores['nombre'] ?? '' ?>
-          </small>
+          <small class="error-message" id="error-nombre"><?= $errores['nombre'] ?? '' ?></small>
         </div>
 
         <div class="form-group">
@@ -53,7 +51,7 @@
 
         <div class="form-group">
           <label for="modelo">Modelo</label>
-          <select id="modelo" name="modelo" class="form-control" <?= empty($modelos) ? 'disabled' : '' ?>>
+          <select id="modelo" name="modelo" class="form-control" <?= empty($modelos) ? 'disabled' : '' ?> data-selected="<?= $datosFormulario['modelo'] ?? '' ?>">
             <option value="">Seleccione un modelo</option>
             <?php if (!empty($modelos)): ?>
               <?php foreach ($modelos as $mod): ?>
@@ -86,16 +84,17 @@
       <fieldset class="fieldset-radio">
         <legend>Estado</legend>
         <div class="radio-group">
-          <input type="checkbox" id="estado" name="estado" <?= ($datosFormulario['estado'] == '1') ? 'checked' : '' ?>>
+          <input type="checkbox" id="estado" name="estado" value="1" <?= ($datosFormulario['estado'] == '1') ? 'checked' : '' ?>>
           <label for="estado" class="radio-label">Activo</label>
         </div>
       </fieldset>
 
       <div class="form-group">
-        <button type="submit" name="btnRegistrar" id="btn btn-form" class="btn-submit">Registrar</button>
+        <button type="submit" name="btnRegistrar" id="btn-form" class="btn-submit">Registrar</button>
       </div>
     </form>
   </section>
 </main>
 <script src="assets/js/script.js"></script>
 </body>
+<?php require_once FOOTER; ?>

@@ -1,31 +1,28 @@
 <?php
-//autor: [Tu Nombre Completo Aquí]
+//autor:dean
 class Cotizacion {
     private $idCotizacion;
-    private $clienteNombre;       // <-- Propiedad en PascalCase
+    private $clienteNombre;
     private $clienteCorreo;
     private $clienteTelefono;
     private $descripcionServicio;
     private $estado;
-    private $fechaCreacion;
-    private $fechaActualizacion;
+    private $fechaSolicitud; 
 
-    public function __construct($idCotizacion, $clienteNombre, $clienteCorreo, $clienteTelefono, $descripcionServicio, $estado, $fechaCreacion, $fechaActualizacion) {
+    public function __construct($idCotizacion, $clienteNombre, $clienteCorreo, $clienteTelefono, $descripcionServicio, $estado, $fechaSolicitud, $fechaActualizacion = null) {
         $this->idCotizacion = $idCotizacion;
         $this->clienteNombre = $clienteNombre;
         $this->clienteCorreo = $clienteCorreo;
         $this->clienteTelefono = $clienteTelefono;
         $this->descripcionServicio = $descripcionServicio;
         $this->estado = $estado;
-        $this->fechaCreacion = $fechaCreacion;
-        $this->fechaActualizacion = $fechaActualizacion;
+        $this->fechaSolicitud = $fechaSolicitud; 
     }
 
-    // Getters
     public function getIdCotizacion() {
         return $this->idCotizacion;
     }
-    public function getClienteNombre() { // <-- ESTE MÉTODO DEBE EXISTIR ASÍ
+    public function getClienteNombre() {
         return $this->clienteNombre;
     }
     public function getClienteCorreo() {
@@ -40,14 +37,11 @@ class Cotizacion {
     public function getEstado() {
         return $this->estado;
     }
-    public function getFechaCreacion() {
-        return $this->fechaCreacion;
-    }
-    public function getFechaActualizacion() {
-        return $this->fechaActualizacion;
+
+    public function getFechaSolicitud() {
+        return $this->fechaSolicitud;
     }
 
-    // Setters (Si los necesitas para actualizar propiedades individualmente, aunque el constructor ya los asigna)
     public function setIdCotizacion($idCotizacion) {
         $this->idCotizacion = $idCotizacion;
     }
@@ -66,11 +60,8 @@ class Cotizacion {
     public function setEstado($estado) {
         $this->estado = $estado;
     }
-    public function setFechaCreacion($fechaCreacion) {
-        $this->fechaCreacion = $fechaCreacion;
-    }
-    public function setFechaActualizacion($fechaActualizacion) {
-        $this->fechaActualizacion = $fechaActualizacion;
+
+    public function setFechaSolicitud($fechaSolicitud) {
+        $this->fechaSolicitud = $fechaSolicitud;
     }
 }
-?>
