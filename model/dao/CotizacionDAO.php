@@ -1,5 +1,5 @@
 <?php
-//autor:dean
+//autor:Dean Leon
 
 require_once 'config/Conexion.php';
 require_once 'model/dto/Cotizacion.php';
