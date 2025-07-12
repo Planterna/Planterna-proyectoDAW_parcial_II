@@ -91,7 +91,6 @@ class UsuariosDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Buscar usuario por ID
     public function buscarPorId($id) {
         $sql = "SELECT id_user, nombre, cedula, correo, telefono, password, rol, estado, notificaciones, fecha_creacion 
                 FROM usuarios WHERE id_user = :id_user LIMIT 1";
@@ -101,7 +100,6 @@ class UsuariosDAO {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Actualizar usuario
     public function actualizar($usuario) {
         $sql = "UPDATE usuarios SET
                     nombre = :nombre,

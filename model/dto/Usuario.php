@@ -16,7 +16,6 @@ class Usuario {
 
     public function __construct() {}
 
-    // --- Getters ---
     function getIdUser() { return $this->id_user; }
     function getNombre() { return $this->nombre; }
     function getCedula() { return $this->cedula; }
@@ -28,7 +27,6 @@ class Usuario {
     function getRecibirInfo() { return $this->notificaciones; } 
     function getFechaCreacion() { return $this->fecha_creacion; } 
 
-    // --- Setters ---
     function setIdUser($id_user) { $this->id_user = $id_user; }
     function setNombre($nombre) { $this->nombre = $nombre; }
     function setCedula($cedula) { $this->cedula = $cedula; }

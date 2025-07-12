@@ -19,7 +19,6 @@ class LoginController
         $this->message = new FunctionUtil();
     }
 
-    // Vistas principales
     public function index()
     {
         require_once VLOGIN . 'login.php';
@@ -50,7 +49,6 @@ class LoginController
         require_once VLOGIN . 'dashboardAdmin.php';
     }
 
-    // Registro de usuario
     public function registrar()
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -123,7 +121,6 @@ class LoginController
         }
     }
 
-    // Validar login
     public function validar()
     {
         $input_usuario = $_POST['usuario'] ?? '';
@@ -167,7 +164,6 @@ class LoginController
         }
     }
 
-    // Listar usuarios (solo admin)
     public function listarUsuarios()
     {
         $this->checkSession();
@@ -181,11 +177,9 @@ class LoginController
 
         $usuarios = $this->model->obtenerTodos($rolFiltro, $textoBuscar);
 
-        // Pasar variables a la vista
         require VLOGIN . 'ListarUsuarios.php';
     }
 
-    // Cambiar estado usuario (solo admin)
     public function cambiarEstadoUsuario()
     {
         $this->checkSession();
@@ -198,7 +192,6 @@ class LoginController
         header("Location: index.php?c=login&f=listarUsuarios");
     }
 
-    // Mostrar formulario de edición (solo admin)
     public function editarUsuario()
     {
         $this->checkSession();
@@ -237,7 +230,6 @@ class LoginController
         require_once VLOGIN . 'dashboardAdmin.php';
     }
 
-    // Actualizar usuario (solo admin)
     public function actualizarUsuario()
     {
         $this->checkSession();
@@ -316,7 +308,6 @@ class LoginController
         else      $this->message->redirectWithMessage(false, "", "Error al actualizar.", $msgUrl);
     }
 
-    // Logout
     public function logout()
     {
         session_start();
@@ -326,7 +317,6 @@ class LoginController
         exit();
     }
 
-    // Utilidades privadas
     private function checkSession()
     {
         if (session_status() === PHP_SESSION_NONE) session_start();

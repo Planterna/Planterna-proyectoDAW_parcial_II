@@ -14,7 +14,6 @@ require_once HEADER;
 <div class="container-fluid mt-4">
     <div class="row">
         <?php if ($_SESSION['rol'] == 1): ?>
-            <!-- CLIENTE -->
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -27,7 +26,6 @@ require_once HEADER;
             
 
         <?php elseif ($_SESSION['rol'] == 2): ?>
-            <!-- TÉCNICO -->
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -40,7 +38,6 @@ require_once HEADER;
             
 
         <?php elseif ($_SESSION['rol'] == 3): ?>
-            <!-- ADMINISTRADOR -->
             <main class="pt-4" style="margin-left: 240px;">
             <div class="container">
                 <div class="row">

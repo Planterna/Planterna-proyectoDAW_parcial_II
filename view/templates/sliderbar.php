@@ -1,16 +1,14 @@
+<!-- autor: John Steven Quijije Tovar -->
 
-<!-- Sidebar fijo (izquierdo) -->
 <nav class="position-fixed bg-light vh-100 shadow-sm pt-4 px-3"
     style="width: 240px; top: 70px; left: 0; overflow-y: auto; z-index: 1000;">
     <div class="accordion" id="sidebarMenu">
 
-       <!-- Inicio -->
        <a class="text-decoration-none text-dark d-block mb-3"
          href="index.php?c=login&f=dashboard">
           <i class="fa-solid fa-house me-2"></i> Inicio
        </a>
 
-       <!-- Gestión de Usuarios -->
        <div class="accordion-item border-0">
           <h2 class="accordion-header" id="headingUsers">
              <button class="accordion-button bg-light text-dark collapsed" type="button"
@@ -38,11 +36,9 @@
           </div>
        </div>
 
-       <!-- Reportes -->
        
        </div>
 
-       <!-- Cerrar sesión -->
        <div class="mt-4">
           <a class="text-decoration-none text-danger d-block"
             href="index.php?c=login&f=logout"

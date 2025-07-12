@@ -43,7 +43,6 @@ require_once HEADER;
             </select>
         </div>
 
-        <!-- botón -->
         <div class="col">
             <button type="submit" class="btn btn-outline-success">
                 Buscar
