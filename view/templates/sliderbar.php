@@ -39,31 +39,7 @@
        </div>
 
        <!-- Reportes -->
-       <div class="accordion-item border-0 mt-2">
-          <h2 class="accordion-header" id="headingReportes">
-             <button class="accordion-button bg-light text-dark collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#collapseReportes"
-                    aria-expanded="false" aria-controls="collapseReportes">
-                <i class="fa-solid fa-chart-column me-2"></i> Reportes
-             </button>
-          </h2>
-          <div id="collapseReportes" class="accordion-collapse collapse"
-              aria-labelledby="headingReportes" data-bs-parent="#sidebarMenu">
-             <div class="accordion-body py-1">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                       <a class="nav-link text-dark" href="index.php?c=reportes&f=dashboard">
-                          Resumen del Sistema
-                       </a>
-                    </li>
-                    <li class="nav-item">
-                       <a class="nav-link text-dark" href="index.php?c=reportes&f=graficos">
-                          Gráficos
-                       </a>
-                    </li>
-                </ul>
-             </div>
-          </div>
+       
        </div>
 
        <!-- Cerrar sesión -->

@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
 require_once HEADER;
 require_once SLIDERBAR;
 
-// $usuario puede venir de la lógica del controlador (null para crear, objeto Usuario para editar)
+
 ?>
 
 <main class="container pt-4 ml-sidebar">
@@ -27,7 +27,7 @@ require_once SLIDERBAR;
                     <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($usuario->getIdUser()); ?>">
                 <?php } ?>
 
-                <!-- Columna izquierda -->
+                
                 <div class="col-12 col-lg-4 border-end">
                     <div class="mb-3">
                         <label for="cedula" class="form-label">Cédula</label>
@@ -58,7 +58,7 @@ require_once SLIDERBAR;
                     </div>
                 </div>
 
-                <!-- Columna centro -->
+               
                 <div class="col-12 col-lg-4 border-end">
                     <div class="mb-3">
                         <label for="password" class="form-label">
@@ -88,7 +88,7 @@ require_once SLIDERBAR;
                     </div>
                 </div>
 
-                <!-- Columna derecha -->
+                
                 <div class="col-12 col-lg-4 d-flex flex-column align-items-start">
                     <label class="form-label mb-2">Asignar rol</label>
 

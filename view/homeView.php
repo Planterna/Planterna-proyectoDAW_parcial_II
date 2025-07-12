@@ -35,17 +35,17 @@
         <h3>Reparaciones mecánicas</h3>
         <p>Diagnóstico y solución de problemas del motor, suspensión y frenos.</p>
       </a>
-      <a href="repuestos/repuestos.html" class="oferta" style="text-decoration: none; color: inherit;">
+      <a href="index.php?c=Repuestos&f=index" class="oferta" style="text-decoration: none; color: inherit;">
         <img src="https://www.solverdca.com.ar/storage/2019/03/autopartes.e.jpg" alt="Repuestos originales" />
         <h3>Repuestos originales</h3>
         <p>Utilizamos solo piezas originales para garantizar el mejor rendimiento.</p>
       </a>
-      <a href="tecnicos/tecnicos.html" class="oferta" style="text-decoration: none; color: inherit;">
+      <a href="index.php?c=Tecnico&f=info" class="oferta" style="text-decoration: none; color: inherit;">
         <img src="https://www.autoavance.co/wp-content/uploads/2019/10/mecanico-a-domicilio.jpg" alt="Atención tecnica" />
         <h3>Atención tecnica</h3>
         <p>Vamos a donde estés para asistirte con emergencias mecánicas.</p>
       </a>
-      <a href="cotizaciones/cotizaciones.html" class="oferta" style="text-decoration: none; color: inherit;">
+      <a href="index.php?c=Cotizacion&f=info" class="oferta" style="text-decoration: none; color: inherit;">
         <img src="https://www.css.es/blog/img/cita-previa-taller.jpg" alt="cotizaciones personalizadas" />
         <h3>cotizaciones personalizadas</h3>
         <p>Consulta precios y agenda desde tu celular o computadora.</p>

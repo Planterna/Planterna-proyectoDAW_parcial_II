@@ -18,25 +18,22 @@ require_once HEADER;
             margin-left: 240px;
         }
 
-        /* ancho del sidebar */
     }
 </style>
+
 
 <main class="container pt-4 ml-sidebar">
     <h2 class="fw-semibold text-center text-uppercase mb-4">Listado de Usuarios</h2>
 
-    <!-- buscador + filtro -->
     <form class="row row-cols-lg-auto g-2 mb-3" method="POST"
         action="index.php?c=login&f=listarUsuarios">
 
-        <!-- texto de búsqueda -->
         <div class="col">
             <input type="text" name="q" class="form-control"
                 placeholder="Buscar nombre o cédula"
                 value="<?= htmlspecialchars($textoBuscar ?? '') ?>">
         </div>
 
-        <!-- filtro de rol -->
         <div class="col">
             <select name="rolFiltro" class="form-select">
                 <option value="">Todos los roles</option>
@@ -87,19 +84,32 @@ require_once HEADER;
                         </td>
 
                         <td class="d-flex gap-1">
-                            <!-- Editar -->
                             <a href="index.php?c=login&f=editarUsuario&id=<?= $u['id_user'] ?>" class="btn btn-sm btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z" />
+                                    <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z" />
+                                </svg>
                                 Editar
                             </a>
 
 
-                            <!-- Activar / Desactivar -->
                             <form method="POST" action="index.php?c=login&f=cambiarEstadoUsuario"
-                                onsubmit="return confirm('¿Seguro?');">
+                                onsubmit="return confirm('¿Estas seguro de realizar el cambio?');">
                                 <input type="hidden" name="id" value="<?= $u['id_user'] ?>">
                                 <input type="hidden" name="estado" value="<?= $u['estado'] ? 0 : 1 ?>">
                                 <button type="submit"
                                     class="btn btn-sm <?= $u['estado'] ? 'btn-danger' : 'btn-success' ?>">
+                                    <?php if ($u['estado']): ?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                                            <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                                        </svg>
+                                    <?php else: ?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                                            <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                                        </svg>
+                                    <?php endif; ?>
                                     <?= $u['estado'] ? 'Desactivar' : 'Activar' ?>
                                 </button>
                             </form>

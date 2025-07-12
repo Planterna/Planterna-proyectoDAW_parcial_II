@@ -8,6 +8,7 @@ if (!isset($_SESSION)) session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <title>Index</title>
@@ -40,7 +41,7 @@ if (!isset($_SESSION)) session_start();
             </div>
 
             <div class="d-flex align-items-center">
-                <a href="#" class="ms-3"><i class="fa-solid fa-question text-dark"></i></a>
+                <a href="#" class="ms-3"></a>
 
                 <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true): ?>
                     <span class="ms-3"><?php echo htmlspecialchars($_SESSION['nombre']); ?></span>
@@ -61,17 +62,21 @@ if (!isset($_SESSION)) session_start();
 // Mostrar mensaje flash si existe
 if (!empty($_SESSION['mensaje'])) {
     ?>
-    <div style="margin-top: 60px;" class="alert alert-<?php echo $_SESSION['color']; ?> alert-dismissible fade show" role="alert">
-        <?php echo $_SESSION['mensaje']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div style="margin-top: 60px; display: flex; justify-content: center;">
+        <div class="alert alert-<?php echo $_SESSION['color']; ?> alert-dismissible fade show text-center p-2 px-4 small d-flex align-items-center justify-content-between" role="alert" style="max-width: 400px; width: 100%;">
+            <span class="flex-grow-1"><?php echo $_SESSION['mensaje']; ?></span>
+            <i class="bi bi-x fs-5 ms-3" data-bs-dismiss="alert" role="button" aria-label="Cerrar" style="cursor: pointer;"></i>
+        </div>
     </div>
     <?php
     unset($_SESSION['mensaje']);
     unset($_SESSION['color']);
 } else {
-    echo '<div style="margin-top: 75px"></div>';
+    echo '<div style="margin-top: 75px;"></div>';
 }
 ?>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>

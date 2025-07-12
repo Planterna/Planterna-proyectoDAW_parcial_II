@@ -42,7 +42,9 @@
         <label for="notificaciones" class="form-check-label">Deseo recibir información y promociones</label>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100 mt-3">Registrarse</button>
+      <div class="text-center mb-3">
+      <button type="submit" class="btn buttonLinkPri w-100">Registrarse</button>
+      </div>
     </form>
 
     <div class="text-center mt-3">
