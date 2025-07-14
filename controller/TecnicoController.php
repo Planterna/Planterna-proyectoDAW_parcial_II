@@ -23,14 +23,14 @@ class TecnicoController {
 
     public function listar() {
         validarSesion();
-        validarAcceso([1, 2, 3]); 
+        validarAcceso1([1, 2, 3]); 
         $tecnicos = $this->tecnicoDAO->listarTecnicos();
         require_once 'view/tecnico/tecnico_list.php';
     }
 
     public function vista_registrar() {
         validarSesion();
-        validarAcceso([1, 3]);
+        validarAcceso1([3]);
 
         $datosFormulario = [
             'nombre' => $_SESSION['old_input']['nombre'] ?? '',
@@ -46,7 +46,7 @@ class TecnicoController {
 
     public function registrar() {
         validarSesion();
-        validarAcceso([1, 3]); 
+        validarAcceso1([3]); 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombre'] ?? '';
@@ -116,7 +116,7 @@ class TecnicoController {
 
     public function vista_actualizar() {
         validarSesion();
-        validarAcceso([1, 3]); 
+        validarAcceso1([3]); 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $tecnico = $this->tecnicoDAO->obtenerTecnicoPorId($id);
@@ -147,7 +147,7 @@ class TecnicoController {
 
     public function actualizar() {
         validarSesion();
-        validarAcceso([1, 3]); 
+        validarAcceso1([3]);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_user = $_POST['id_user'] ?? '';
@@ -226,7 +226,7 @@ class TecnicoController {
 
     public function eliminar() {
         validarSesion();
-        validarAcceso([1, 3]); 
+        validarAcceso1([3]);
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -246,7 +246,7 @@ class TecnicoController {
 
     public function solicitar_tecnico_simple() {
         validarSesion();
-        validarAcceso([1, 2, 3]); 
+        validarAcceso1([1, 2, 3]); 
         if (isset($_GET['id_tecnico'])) {
             $id_tecnico = $_GET['id_tecnico'];
             $tecnico = $this->tecnicoDAO->obtenerTecnicoPorId($id_tecnico);
@@ -274,14 +274,14 @@ class TecnicoController {
 
     public function listar_solicitudes_simples() {
         validarSesion();
-        validarAcceso([1, 2, 3]); 
+        validarAcceso1([1, 2, 3]);
         $solicitudes_simples = $this->tecnicoDAO->listarSolicitudesSimples();
         require_once 'view/tecnico/solicitudes_simples_list.php';
     }
 
     public function limpiar_solicitudes_simples() {
         validarSesion();
-        validarAcceso([1]); 
+        validarAcceso1([1]);
         redirectWithMessage(
             $this->tecnicoDAO->limpiarTodasSolicitudesSimples(),
             "Todas las solicitudes simples han sido eliminadas exitosamente.",

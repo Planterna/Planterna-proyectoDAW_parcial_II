@@ -13,7 +13,7 @@
                 </button>
             </form>
 
-            <a href="index.php?c=repuestos&f=view_new" class="btn btn-primario" role="button">
+            <a href="index.php?c=repuestos&f=view_new" class="btn buttonLinkPri" role="button">
                 <i class="fas fa-plus"></i> Nuevo Repuesto
             </a>
         </div>

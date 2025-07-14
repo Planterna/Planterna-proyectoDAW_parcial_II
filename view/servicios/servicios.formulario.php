@@ -14,6 +14,9 @@
       <div class="contenedor_formulario">
         <form method="POST" action="index.php?c=servicios&f=newService" class="formulario">
           <input type="hidden" name="id_user" id="id_user" value="<?php echo htmlentities($id_user) ?>" />
+          <div class="d-flex justify-content-end">
+            <a class="my-2 d-block" href="index.php?c=servicios&f=formSearch">Regresar</a>
+          </div>
           <label for="nombre">Nombre:</label>
           <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
 
@@ -42,9 +45,7 @@
           <button type="submit" class="enviar btn btn-primary d-block mx-auto my-1">
             Enviar Solicitud
           </button>
-          <div class="d-flex justify-content-end">
-            <a class="my-2 d-block" href="index.php?c=servicios&f=index">Regresar</a>
-          </div>
+          
         </form>
       </div>
       <?php }else{?>
@@ -52,6 +53,9 @@
         <form method="POST" action="index.php?c=servicios&f=edit" class="formulario">
           <input type="hidden" name="id" id="id" value="<?php echo htmlentities($serv["id_Registro"]) ?>" />
           <input type="hidden" name="id_user" id="id_user" value="<?php echo htmlentities($serv["id_user"]) ?>" />
+          <div class="d-flex justify-content-end">
+            <a class="my-2 d-block" href="index.php?c=servicios&f=formSearch">Regresar</a>
+          </div>
           <label for="nombre">Nombre:</label>
           <input type="text" id="nombre" name="nombre" value="<?php echo $serv["nombre"] ?>"
             placeholder="Nombre" required>
@@ -82,9 +86,7 @@
           <button type="submit" class="enviar btn btn-primary d-block mx-auto my-1">
             Enviar Solicitud
           </button>
-          <div class="d-flex justify-content-end">
-            <a class="my-2 d-block" href="index.php?c=servicios&f=formSearch">Regresar</a>
-          </div>
+          
         </form>
       </div>
        <?php } ?> 

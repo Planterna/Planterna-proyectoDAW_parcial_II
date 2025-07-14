@@ -231,7 +231,7 @@ class CotizacionController {
                 $cliente_telefono,
                 $descripcion_servicio,
                 $estado,
-                $cotizacionExistente->getFechaCreacion(), 
+                $cotizacionExistente->getFechaSolicitud(), 
                 null 
             );
 
@@ -254,7 +254,7 @@ class CotizacionController {
 
     public function eliminar() {
         validarSesion();
-        validarAcceso([1]); 
+        validarAcceso([1,3]); 
 
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $id = $_GET['id'];

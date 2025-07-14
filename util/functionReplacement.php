@@ -55,11 +55,20 @@ function validarSesion() {
 }
 
 
+function validarAcceso1(array $roles){
+    if(!isset($_SESSION['rol'])|| !in_array($_SESSION['rol'], $roles)){
+        $_SESSION['mensaje'] = 'Acceso no permitido';
+        $_SESSION['color'] = 'danger';
+        header("Location: index.php?c=Tecnico&f=info");
+        exit();
+    }
+}
+
 function validarAcceso(array $roles){
     if(!isset($_SESSION['rol'])|| !in_array($_SESSION['rol'], $roles)){
         $_SESSION['mensaje'] = 'Acceso no permitido';
         $_SESSION['color'] = 'danger';
-        header("Location: index.php?c=servicios&f=index");
+        header("Location: index.php?c=Repuestos&f=index");
         exit();
     }
 }
