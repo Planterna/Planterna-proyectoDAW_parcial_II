@@ -8,7 +8,7 @@
             <div id="carouselPhoto" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/images/servicioReparaciones.jpg" class="d-block w-100" alt="Servicio Reparaciones">
+                        <img src="https://educacion-continua.aiep.cl/wp-content/uploads/2020/07/banner-curso-mecanicaautomotriz.jpg" class="d-block w-100" alt="Servicio Reparaciones">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Reparaciones</h5>
                             <p>El servicio de reparaciones automotrices abarca la detección, diagnóstico y corrección de fallas mecánicas,
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/images/servicioTecnico.jpeg" class="d-block w-100" alt="Servicio Tecnico">
+                        <img src="https://www.quitoinforma.gob.ec/wp-content/uploads/2022/07/Conozca-todos-los-detalles-sobre-la-revision-tecnica-vehicular-y-matriculacion-en-Quito-2-800x445.jpeg" class="d-block w-100" alt="Servicio Tecnico">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Servicio Tecnico</h5>
                             <p>El servicio mecánico consiste en el diagnóstico, mantenimiento preventivo y reparación de vehículos automotores para garantizar su correcto funcionamiento, seguridad y eficiencia. 
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/images/servicioMantenimientoPreventivo.jpg" class="d-block w-100" alt="Servicio de Mantenimiento">
+                        <img src="https://automagazine.ec/wp-content/uploads/2021/03/VW-Puntos-Mantenimientos-800x445.jpg" class="d-block w-100" alt="Servicio de Mantenimiento">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Mantenimineto Preventivo</h5>
                                 <p>El mantenimiento preventivo consiste en la ejecución planificada de inspecciones, ajustes, limpieza, lubricación

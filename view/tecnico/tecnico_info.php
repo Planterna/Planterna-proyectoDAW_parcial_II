@@ -6,7 +6,7 @@
         <h2 class="titulos_h2 text-center mb-4">Nuestros Técnicos a Domicilio</h2>
         
         <div class="info-card">
-            <img src="assets/images/tecnico_a_domicilio.jpg" alt="Técnico a Domicilio" class="info-image">
+            <img src="https://autolab.com.co/wp-content/uploads/2019/11/171219-En-qu%C3%A9-se-diferencia-el-mantenimiento-preventivo-del-correctivo_Mesa-de-trabajo-1.jpg" alt="Técnico a Domicilio" class="info-image">
             <div class="info-content">
                 <h3>¿Qué es el Servicio de Técnico a Domicilio?</h3>
                 <p>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="info-card reverse">
-            <img src="assets/images/experiencia_tecnicos.jpg" alt="Experiencia de Técnicos" class="info-image">
+            <img src="https://www.mechtech.edu/wp-content/uploads/2023/12/cheerful-male-technician-in-garage-2023-11-27-05-31-07-utc-scaled.jpg" alt="Experiencia de Técnicos" class="info-image">
             <div class="info-content">
                 <h3>Profesionales Certificados y Confiables</h3>
                 <p>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="info-card">
-            <img src="assets/images/beneficios_domicilio.jpg" alt="Beneficios del Servicio a Domicilio" class="info-image">
+            <img src="https://blog.continentalmotores.com/hubfs/SOLUCIONWEB/Blog/Posts%20blogs/Blog-continental-motores-cuida-tu-carro-conoce-la-importancia-de-darle-mantenimiento.jpg" alt="Beneficios del Servicio a Domicilio" class="info-image">
             <div class="info-content">
                 <h3>Beneficios del Servicio a Domicilio</h3>
                 <ul>
